@@ -5,11 +5,11 @@
 netmod                                                        Q. Ma, Ed.
 Internet-Draft                                                     Q. Wu
 Intended status: Standards Track                                  Huawei
-Expires: 28 October 2024                               M. Boucadair, Ed.
+Expires: 19 December 2024                              M. Boucadair, Ed.
                                                                   Orange
                                                                  D. King
                                                     Lancaster University
-                                                           26 April 2024
+                                                            17 June 2024
 
 
                 A Common YANG Data Model for Scheduling
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 October 2024.
+   This Internet-Draft will expire on 19 December 2024.
 
 Copyright Notice
 
@@ -350,12 +350,13 @@ Table of Contents
    of recurrence rule.  For example, a "daily" frequency value specifies
    repeating events based on an interval of a day or more.
 
-   The interval ("interval") represents at which intervals the
-   recurrence rule repeats.  For example, within a daily recurrence
-   rule, an interval value of "8" means every eight days.  The default
-   value is "1", meaning every second for a secondly recurrence rule,
-   every minute for a minutely rule, every hour for an hourly rule,
-   every day for a daily rule, and so on.  Note that per Section 4.13 of
+   Consistent with Section 3.3.10 of [RFC5545], the interval
+   ("interval") represents at which intervals the recurrence rule
+   repeats.  For example, within a daily recurrence rule, an interval
+   value of "8" means every eight days.  The default value is "1",
+   meaning every second for a secondly recurrence rule, every minute for
+   a minutely rule, every hour for an hourly rule, every day for a daily
+   rule, and so on.  Note that per Section 4.13 of
    [I-D.ietf-netmod-rfc8407bis], no "default" substatement is used here
    because there are cases (e.g., profiling) where the use of the
    default is problematic.
@@ -405,10 +406,15 @@ Table of Contents
    require that the date and time values to describe the recurrence be
    reported in UTC format.
 
-   It also augments the "recurrence-first" container with a parameter
-   "duration" in units of seconds to allow the time period of the first
-   occurrence to be specified.  The "duration" also applies to
-   subsequent recurrence instances.
+   It also augments the "recurrence-first" container with a "duration"
+   parameter in units of seconds to specify the time period of the first
+   occurrence.  Unless specified otherwise, the "duration" also applies
+   to subsequent recurrence instances.
+
+   Note that the "interval" and "duration" cover two distinct properties
+   of a schedule event.  The interval specifies when a schedule will
+   occur, combined with the frequency parameter; while the duration
+   indicates how long an occurence will last.
 
    The "recurrence-utc" grouping is designed to be reused in scheduling
    contexts where machine readability is more desirable.
@@ -457,11 +463,11 @@ Table of Contents
    format of UTC nor time zone offset to UTC.
 
    It also augments the "recurrence-first" container with a parameter
-   "duration" to allow the time period of the first occurrence to be
-   specified.  The "duration" also applies to subsequent recurrence
-   instances.
+   "duration" to specify the time period of the first occurrence.
+   Unless specified otherwise, the "duration" also applies to subsequent
+   recurrence instances.
 
-   Unlike the definition of "recurrence-utc" grouping Section 3.4,
+   Unlike the definition of "recurrence-utc" grouping (Section 3.4),
    "recurrence-with-time-zone" is intended to promote human readability
    over machine readability.
 
@@ -761,29 +767,29 @@ Table of Contents
 5.  Note and Restrictions
 
    There are some restrictions that need to be followed when using
-   groupings defined in "ietf-schedule" yang module:
+   groupings defined in the "ietf-schedule" YANG module:
 
    *  The instant in time represented by "period-start" MUST be before
-      the "period-end" for "period-of-time" grouping
+      the "period-end" for "period-of-time" grouping.
 
    *  The combination of the day, month, and year represented for date
       and time value MUST be valid.  See Section 5.7 of [RFC3339] for
       the maxinum day number based on the month and year.
 
    *  The second MUST have the value "60" at the end of months in which
-      a leap second occurs for date and time value
+      a leap second occurs for date and time value.
 
    *  Care must be taken when defining recurrence occurring very often
       and frequent that can be an additional source of attacks by
       keeping the system permanently busy with the management of
-      scheduling
+      scheduling.
 
    *  Schedules received with a starting time in the past with respect
-      to current time SHOULD be ignored
+      to current time SHOULD be ignored.
 
 6.  The "ietf-schedule" YANG Module
 
-   This module imports types defined in [RFC6991].
+   This module imports types defined in [RFC6991] and [RFC7317].
 
    <CODE BEGINS> file "ietf-schedule@2024-04-16.yang"
    module ietf-schedule {
@@ -818,8 +824,8 @@ Table of Contents
         Author:   Daniel King
                   <mailto:d.king@lancaster.ac.uk>";
      description
-       "This YANG module defines a set of common groupings which
-        are applicable for scheduling purposes such as events,
+       "This YANG module defines a set of common types and groupings
+        which are applicable for scheduling purposes such as events,
         policy, services, or resources based on date and time.
 
         Copyright (c) 2024 IETF Trust and the persons identified
@@ -933,77 +939,90 @@ Table of Contents
        description
          "Base identity for frequency type.";
      }
+
      identity secondly {
        base frequency-type;
        description
          "Indicates a repeating rule based on an interval of
           a second or more.";
      }
+
      identity minutely {
        base frequency-type;
        description
          "Indicates a repeating rule based on an interval of
           a minute or more.";
      }
+
      identity hourly {
        base frequency-type;
        description
          "Indicates a repeating rule based on an interval of
           an hour or more.";
      }
+
      identity daily {
        base frequency-type;
        description
          "Indicates a repeating rule based on an interval of
           a day or more.";
      }
+
      identity weekly {
        base frequency-type;
        description
          "Indicates a repeating rule based on an interval of
           a week or more.";
      }
+
      identity monthly {
        base frequency-type;
        description
          "Indicates a repeating rule based on an interval of
           a month or more.";
      }
+
      identity yearly {
        base frequency-type;
        description
          "Indicates a repeating rule based on an interval of
           a year or more.";
      }
+
      identity schedule-type {
        description
          "Base identity for schedule type.";
      }
+
      identity period {
        base schedule-type;
        description
-         "Indicates a period based schedule.";
+         "Indicates a period-based schedule.";
      }
 
      identity recurrence {
        base schedule-type;
        description
-         "Indicates a recurrence based schedule.";
+         "Indicates a recurrence-based schedule.";
      }
+
      identity schedule-state {
        description
          "Base identity for schedule state.";
      }
+
      identity enabled {
        base schedule-state;
        description
          "Indicates a recurrence with an enabled state.";
      }
+
      identity disabled {
        base schedule-state;
        description
          "Indicates a recurrence with a disabled state.";
      }
+
      identity out-of-date {
        base schedule-state;
        description
@@ -1012,7 +1031,7 @@ Table of Contents
 
      identity discard-action {
        description
-         "Indicates that schedule will be discarded.";
+         "Indicates that a schedule will be discarded.";
      }
 
      identity warning {
@@ -1021,12 +1040,14 @@ Table of Contents
          "Indicates that a warning message is generated
           when a schedule is discarded.";
      }
+
      identity error {
        base discard-action;
        description
          "Indicates that an error message is generated
           when a schedule is discarded.";
      }
+
      identity silently-discard {
        base discard-action;
        description
@@ -1036,18 +1057,15 @@ Table of Contents
 
      grouping generic-schedule-params {
        description
-         "Incldues a set of generic configuration parameters that are
+         "Includes a set of generic parameters that are
           followed by the entity that supports schedules.
-
-          These parameters apply to all schedules.
 
           Such parameters are used as guards to prevent, e.g., stale
           configuration.";
        leaf time-zone-identifier {
          type sys:timezone-name;
          description
-           "Indicates the identifier for the time zone in a time zone
-            database.";
+           "Indicates the identifier for the time zone.";
        }
        leaf validity {
          type yang:date-and-time;
@@ -1060,21 +1078,20 @@ Table of Contents
        leaf max-allowed-start {
          type yang:date-and-time;
          description
-           "Specifies the maximum scheduled start date and time, a
-            requested schedule instance whose first occurrence after
+           "Specifies the maximum scheduled start date and time.
+            A requested schedule whose first instance occurrs after
             this value cannot be accepted by the entity. Specifically,
             a requested schedule will be rejected if the first
-            occurrence of that new schedule exceeds
-            'max-allowed-start'.";
+            occurrence of that schedule exceeds 'max-allowed-start'.";
        }
        leaf min-allowed-start {
          type yang:date-and-time;
          description
-           "Specifies the minimum scheduled start date and time, a
-            requested schedule instance whose first occurrence before
+           "Specifies the minimum scheduled start date and time.
+            A requested schedule whose first instance occurrs before
             this value cannot be accepted by the entity. Specifically,
             a requested schedule will be rejected if the first
-            occurrence of that new schedule is scheduled before
+            occurrence of that schedule is scheduled before
             'min-allowed-start'.";
        }
        leaf max-allowed-end {
@@ -1116,7 +1133,7 @@ Table of Contents
        choice period-type {
          description
            "Indicates the type of the time period. Two types are
-             supported.";
+            supported.";
          case explicit {
            description
              "A period of time is identified by its start and its end.
@@ -1135,8 +1152,8 @@ Table of Contents
          }
          case duration {
            description
-             "A period of time is defined by a start and a
-              positive duration of time.";
+             "A period of time is defined by a start and a positive
+              duration of time.";
            leaf duration {
              type duration {
                pattern 'P((([0-9]+)D)?(T(0[0-9]|1[0-9]|2[0-3])'
@@ -1170,8 +1187,7 @@ Table of Contents
          }
          mandatory true;
          description
-           "This parameter is defined to identify the frequency type of
-            the recurrence rule.";
+           "Specifies the frequency type of the recurrence rule.";
        }
        leaf interval {
          type uint32;
@@ -1243,9 +1259,8 @@ Table of Contents
              units "seconds";
              description
                "When specified, it refers to the duration of each
-                occurrence. The duration is in units of seconds. The
-                exact duration also applies to all the recurrence
-                instance.";
+                occurrence. The exact duration also applies to all
+                the recurrence instance.";
            }
          }
        }
@@ -1285,14 +1300,14 @@ Table of Contents
        description
          "This grouping defines an aggregate set of repeating
           occurrences with UTC time format. The recurrence instances
-          are specified by the union of occurrences defined by both
-          the recurrence rule and 'period-timeticks' list. Duplicate
+          are specified by the occurrences defined by both the
+          recurrence rule and 'period-timeticks' list. Duplicate
           instances are ignored.";
        uses recurrence-utc;
        list period-timeticks {
          key "period-start";
          description
-           "A list of period with timeticks formats.";
+           "A list of periods with timeticks formats.";
          leaf period-start {
            type yang:timeticks;
            must
@@ -1329,40 +1344,38 @@ Table of Contents
        description
          "This grouping defines an aggregate set of repeating
           occurrences with local time format and time zone specified.
-          The recurrence instances are specified by the union of
-          occurrences defined by both the recurrence rule and 'period'
-          list. Duplicate instances are ignored.";
+          The recurrence instances are specified by the occurrences
+          defined by both the recurrence rule and 'period' list.
+          Duplicate instances are ignored.";
        uses recurrence-with-time-zone;
        list period {
          key "period-start";
          description
-           "A list of period with date-and-time formats.";
+           "A list of periods with date-and-time formats.";
          uses period-of-time;
        }
      }
 
      grouping icalendar-recurrence {
        description
-         "This grouping is defined to identify properties that
-          contain a recurrence rule.";
+         "This grouping specifies properties of a recurrence rule.";
        reference
-         "RFC 5545: Internet Calendaring and Scheduling
-                    Core Object Specification (iCalendar),
-                    Section 3.8.5";
+         "RFC 5545: Internet Calendaring and Scheduling Core Object
+                    Specification (iCalendar), Section 3.8.5";
        uses recurrence-time-zone-with-date-times;
        leaf-list bysecond {
          type uint32 {
            range "0..60";
          }
          description
-           "A list of seconds within a minute.";
+           "Specifies a list of seconds within a minute.";
        }
        leaf-list byminute {
          type uint32 {
            range "0..59";
          }
          description
-           "A list of minutes within an hour.";
+           "Specifies a list of minutes within an hour.";
        }
        leaf-list byhour {
          type uint32 {
@@ -1450,13 +1463,13 @@ Table of Contents
 
      grouping schedule-status {
        description
-         "This grouping is defined to identify common properties of
-          scheduling status.";
+         "This grouping defines common properties of scheduling
+          status.";
        leaf schedule-id {
          type string;
          description
-           "The schedule identifier that globally identifies a
-            schedule in a device, controller, network, etc.
+           "The schedule identifier that uniquely identifies a
+            schedule within a device, controller, network, etc.
             The unicity scope depends on the implementation.";
        }
        leaf state {
@@ -1464,12 +1477,12 @@ Table of Contents
            base schedule-state;
          }
          description
-           "The current state of the schedule.";
+           "Indicates the current state of the schedule.";
        }
        leaf version {
          type uint16;
          description
-           "The version number of the schedule.";
+           "Indicates the version number of the schedule.";
        }
        leaf schedule-type {
          type identityref {
@@ -1477,13 +1490,13 @@ Table of Contents
          }
          config false;
          description
-           "The schedule type.";
+           "Reports the schedule type.";
        }
        leaf last-update {
          type yang:date-and-time;
          config false;
          description
-           "The timestamp that the schedule is last updated.";
+           "Reports the timestamp that the schedule is last updated.";
        }
        leaf counter {
          when "derived-from-or-self(../schedule-type, "
@@ -1500,7 +1513,7 @@ Table of Contents
          type yang:date-and-time;
          config false;
          description
-           "The timestamp of last occurrence.";
+           "Indicates the timestamp of last occurrence.";
        }
        leaf upcoming-occurrence {
          when "derived-from-or-self(../schedule-type, "
@@ -1509,7 +1522,7 @@ Table of Contents
          type yang:date-and-time;
          config false;
          description
-           "The timestamp of next occurrence.";
+           "Indicates the timestamp of next occurrence.";
        }
      }
    }
@@ -1559,7 +1572,7 @@ Table of Contents
            name:               ietf-schedule
            namespace:          urn:ietf:params:xml:ns:yang:ietf-schedule
            prefix:             schedule
-           maintained by IANA: N
+           maintained by IANA? N
            reference:          RFC XXXX
 
 9.  References
@@ -1597,6 +1610,10 @@ Table of Contents
    [RFC6991]  Schoenwaelder, J., Ed., "Common YANG Data Types",
               RFC 6991, DOI 10.17487/RFC6991, July 2013,
               <https://www.rfc-editor.org/rfc/rfc6991>.
+
+   [RFC7317]  Bierman, A. and M. Bjorklund, "A YANG Data Model for
+              System Management", RFC 7317, DOI 10.17487/RFC7317, August
+              2014, <https://www.rfc-editor.org/rfc/rfc7317>.
 
    [RFC7950]  Bjorklund, M., Ed., "The YANG 1.1 Data Modeling Language",
               RFC 7950, DOI 10.17487/RFC7950, August 2016,
@@ -1648,9 +1665,9 @@ Table of Contents
               Ma, Q., Wu, Q., Boucadair, M., and D. King, "A YANG Data
               Model and RADIUS Extension for Policy-based Network Access
               Control", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-ucl-acl-03, 2 February 2024,
+              opsawg-ucl-acl-04, 6 June 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ucl-acl-03>.
+              ucl-acl-04>.
 
    [I-D.ietf-tvr-schedule-yang]
               Qu, Y., Lindem, A., Kinzie, E., Fedyk, D., and M.
@@ -1665,6 +1682,14 @@ Table of Contents
               Progress, Internet-Draft, draft-ietf-tvr-use-cases-09, 29
               February 2024, <https://datatracker.ietf.org/doc/html/
               draft-ietf-tvr-use-cases-09>.
+
+   [I-D.liu-netmod-yang-schedule]
+              Liu, X., Bryskin, I., Beeram, V. P., Saad, T., Shah, H.
+              C., and O. G. de Dios, "A YANG Data Model for
+              Configuration Scheduling", Work in Progress, Internet-
+              Draft, draft-liu-netmod-yang-schedule-05, 1 March 2018,
+              <https://datatracker.ietf.org/doc/html/draft-liu-netmod-
+              yang-schedule-05>.
 
    [RFC3339]  Klyne, G. and C. Newman, "Date and Time on the Internet:
               Timestamps", RFC 3339, DOI 10.17487/RFC3339, July 2002,
@@ -1681,10 +1706,11 @@ Table of Contents
 Appendix A.  Examples of Format Representation
 
    This section provides some examples to illustrate the use of the
-   period and recurrence formats defined as YANG groupings.  Note that
-   "grouping" does not define any data nodes in the schema tree, the
-   examples illustrated are just for the ease of understanding.  Only
-   the message body is provided with JSON used for encoding [RFC7951].
+   period and recurrence formats defined in Section 6.  Note that a
+   "grouping" does not define any data nodes in the schema tree; the
+   examples illustrated are thus for the ease of understanding.  Only
+   the message body is provided with JSON used for encoding per the
+   guidance in [RFC7951].
 
 A.1.  The "generic-schedule-params" Grouping
 
@@ -1704,9 +1730,8 @@ A.1.  The "generic-schedule-params" Grouping
 
 A.2.  The "period-of-time" Grouping
 
-   The example of a period that starts at 08:00:00 UTC, on January 1,
-   2025 and ends at 18:00:00 UTC on December 31, 2027 is encoded as
-   shown in Figure 12.
+   Figure 12 shows an example of a period that starts at 08:00:00 UTC,
+   on January 1, 2025 and ends at 18:00:00 UTC on December 31, 2027.
 
    {
      "period-start": "2025-01-01T08:00:00Z",
@@ -2198,6 +2223,9 @@ Acknowledgments
    [I-D.contreras-opsawg-scheduling-oam-tests], and
    [I-D.ietf-netmod-eca-policy] for the constructive discussion during
    IETF#118.
+
+   Other related efforts were explored in the past, e.g.,
+   [I-D.liu-netmod-yang-schedule].
 
 Authors' Addresses
 
