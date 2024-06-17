@@ -24,17 +24,17 @@
 <meta content="draft-ietf-netmod-schedule-yang-latest" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.21.0
-    Python 3.11.9
+    Python 3.12.3
     ConfigArgParse 1.7
     google-i18n-address 3.1.0
     intervaltree 3.1.0
-    Jinja2 3.1.2
-    lxml 4.9.3
-    platformdirs 4.2.0
+    Jinja2 3.1.4
+    lxml 4.9.4
+    platformdirs 4.2.2
     pycountry 22.3.5
     PyYAML 6.0.1
     requests 2.31.0
-    setuptools 68.2.2
+    setuptools 69.5.1
     six 1.16.0
     wcwidth 0.2.13
 -->
@@ -1035,11 +1035,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">Common Schedule YANG</td>
-<td class="right">April 2024</td>
+<td class="right">June 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Ma, et al.</td>
-<td class="center">Expires 28 October 2024</td>
+<td class="center">Expires 19 December 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1052,12 +1052,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-netmod-schedule-yang-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-04-26" class="published">26 April 2024</time>
+<time datetime="2024-06-17" class="published">17 June 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-10-28">28 October 2024</time></dd>
+<dd class="expires"><time datetime="2024-12-19">19 December 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1120,7 +1120,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 28 October 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 19 December 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1561,7 +1561,7 @@ module: ietf-schedule
   instance in the recurrence set occurs.<a href="#section-3.3-3" class="pilcrow">¶</a></p>
 <p id="section-3.3-4">The frequency ("frequency") which is mandatory, identifies the type of recurrence rule. For example,
   a "daily" frequency value specifies repeating events based on an interval of a day or more.<a href="#section-3.3-4" class="pilcrow">¶</a></p>
-<p id="section-3.3-5">The interval ("interval") represents at which intervals the recurrence rule repeats. For example,
+<p id="section-3.3-5">Consistent with <span><a href="https://rfc-editor.org/rfc/rfc5545#section-3.3.10" class="relref">Section 3.3.10</a> of [<a href="#RFC5545" class="cite xref">RFC5545</a>]</span>, the interval ("interval") represents at which intervals the recurrence rule repeats. For example,
   within a daily recurrence rule, an interval value of "8" means every eight days.
   The default value is "1", meaning every second for a secondly recurrence rule,
   every minute for a minutely rule, every hour for an hourly rule, every day for a
@@ -1620,11 +1620,13 @@ module: ietf-schedule
 </div>
 <p id="section-3.4-3">The "recurrence-utc" grouping refines the "recurrence" grouping to require
    that the date and time values to describe the recurrence be reported in UTC format.<a href="#section-3.4-3" class="pilcrow">¶</a></p>
-<p id="section-3.4-4">It also augments the "recurrence-first" container with a parameter "duration"
-   in units of seconds to allow the time period of the first occurrence to be
-   specified. The "duration" also applies to subsequent recurrence instances.<a href="#section-3.4-4" class="pilcrow">¶</a></p>
-<p id="section-3.4-5">The "recurrence-utc" grouping is designed to be reused in scheduling contexts
-   where machine readability is more desirable.<a href="#section-3.4-5" class="pilcrow">¶</a></p>
+<p id="section-3.4-4">It also augments the "recurrence-first" container with a "duration" parameter
+   in units of seconds to specify the time period of the first occurrence. Unless specified otherwise, the "duration" also applies to subsequent recurrence instances.<a href="#section-3.4-4" class="pilcrow">¶</a></p>
+<p id="section-3.4-5">Note that the "interval" and "duration" cover two distinct properties of a schedule event.
+The interval specifies when a schedule will occur, combined with the frequency parameter; while the duration indicates how long
+an occurence will last.<a href="#section-3.4-5" class="pilcrow">¶</a></p>
+<p id="section-3.4-6">The "recurrence-utc" grouping is designed to be reused in scheduling contexts
+   where machine readability is more desirable.<a href="#section-3.4-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-rec-tz">
@@ -1680,9 +1682,9 @@ module: ietf-schedule
    and time value is neither reported in the format of UTC nor time zone offset
    to UTC.<a href="#section-3.5-3" class="pilcrow">¶</a></p>
 <p id="section-3.5-4">It also augments the "recurrence-first" container with a parameter "duration"
-   to allow the time period of the first occurrence to be specified. The
+   to specify the time period of the first occurrence. Unless specified otherwise, the
    "duration" also applies to subsequent recurrence instances.<a href="#section-3.5-4" class="pilcrow">¶</a></p>
-<p id="section-3.5-5">Unlike the definition of "recurrence-utc" grouping <a href="#sec-rec-utc" class="auto internal xref">Section 3.4</a>,
+<p id="section-3.5-5">Unlike the definition of "recurrence-utc" grouping (<a href="#sec-rec-utc" class="auto internal xref">Section 3.4</a>),
    "recurrence-with-time-zone" is intended to promote human readability over
    machine readability.<a href="#section-3.5-5" class="pilcrow">¶</a></p>
 </section>
@@ -2012,11 +2014,11 @@ module: ietf-schedule
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-note-and-restrictions" class="section-name selfRef">Note and Restrictions</a>
       </h2>
 <p id="section-5-1">There are some restrictions that need to be followed when using groupings defined
-   in "ietf-schedule" yang module:<a href="#section-5-1" class="pilcrow">¶</a></p>
+   in the "ietf-schedule" YANG module:<a href="#section-5-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-5-2.1">
           <p id="section-5-2.1.1">The instant in time represented by "period-start" <span class="bcp14">MUST</span> be before the
-"period-end" for "period-of-time" grouping<a href="#section-5-2.1.1" class="pilcrow">¶</a></p>
+"period-end" for "period-of-time" grouping.<a href="#section-5-2.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-5-2.2">
           <p id="section-5-2.2.1">The combination of the day, month, and year represented for date and time
@@ -2025,16 +2027,16 @@ number based on the month and year.<a href="#section-5-2.2.1" class="pilcrow">¶
 </li>
         <li class="normal" id="section-5-2.3">
           <p id="section-5-2.3.1">The second <span class="bcp14">MUST</span> have the value "60" at the end of months in which a leap
-second occurs for date and time value<a href="#section-5-2.3.1" class="pilcrow">¶</a></p>
+second occurs for date and time value.<a href="#section-5-2.3.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-5-2.4">
           <p id="section-5-2.4.1">Care must be taken when defining recurrence occurring very often and
 frequent that can be an additional source of attacks by keeping the system
-permanently busy with the management of scheduling<a href="#section-5-2.4.1" class="pilcrow">¶</a></p>
+permanently busy with the management of scheduling.<a href="#section-5-2.4.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-5-2.5">
           <p id="section-5-2.5.1">Schedules received with a starting time in the past with respect to
-current time <span class="bcp14">SHOULD</span> be ignored<a href="#section-5-2.5.1" class="pilcrow">¶</a></p>
+current time <span class="bcp14">SHOULD</span> be ignored.<a href="#section-5-2.5.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
@@ -2044,7 +2046,7 @@ current time <span class="bcp14">SHOULD</span> be ignored<a href="#section-5-2.5
       <h2 id="name-the-ietf-schedule-yang-modu">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-the-ietf-schedule-yang-modu" class="section-name selfRef">The "ietf-schedule" YANG Module</a>
       </h2>
-<p id="section-6-1">This module imports types defined in <span>[<a href="#RFC6991" class="cite xref">RFC6991</a>]</span>.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-1">This module imports types defined in <span>[<a href="#RFC6991" class="cite xref">RFC6991</a>]</span> and <span>[<a href="#RFC7317" class="cite xref">RFC7317</a>]</span>.<a href="#section-6-1" class="pilcrow">¶</a></p>
 <div class="breakable sourcecode" id="section-6-2">
 <pre>&lt;CODE BEGINS&gt; file "ietf-schedule@2024-04-16.yang"
 
@@ -2080,8 +2082,8 @@ module ietf-schedule {
      Author:   Daniel King
                &lt;mailto:d.king@lancaster.ac.uk&gt;";
   description
-    "This YANG module defines a set of common groupings which
-     are applicable for scheduling purposes such as events,
+    "This YANG module defines a set of common types and groupings
+     which are applicable for scheduling purposes such as events,
      policy, services, or resources based on date and time.
 
      Copyright (c) 2024 IETF Trust and the persons identified
@@ -2195,77 +2197,90 @@ module ietf-schedule {
     description
       "Base identity for frequency type.";
   }
+
   identity secondly {
     base frequency-type;
     description
       "Indicates a repeating rule based on an interval of
        a second or more.";
   }
+
   identity minutely {
     base frequency-type;
     description
       "Indicates a repeating rule based on an interval of
        a minute or more.";
   }
+
   identity hourly {
     base frequency-type;
     description
       "Indicates a repeating rule based on an interval of
        an hour or more.";
   }
+
   identity daily {
     base frequency-type;
     description
       "Indicates a repeating rule based on an interval of
        a day or more.";
   }
+
   identity weekly {
     base frequency-type;
     description
       "Indicates a repeating rule based on an interval of
        a week or more.";
   }
+
   identity monthly {
     base frequency-type;
     description
       "Indicates a repeating rule based on an interval of
        a month or more.";
   }
+
   identity yearly {
     base frequency-type;
     description
       "Indicates a repeating rule based on an interval of
        a year or more.";
   }
+
   identity schedule-type {
     description
       "Base identity for schedule type.";
   }
+
   identity period {
     base schedule-type;
     description
-      "Indicates a period based schedule.";
+      "Indicates a period-based schedule.";
   }
 
   identity recurrence {
     base schedule-type;
     description
-      "Indicates a recurrence based schedule.";
+      "Indicates a recurrence-based schedule.";
   }
+
   identity schedule-state {
     description
       "Base identity for schedule state.";
   }
+
   identity enabled {
     base schedule-state;
     description
       "Indicates a recurrence with an enabled state.";
   }
+
   identity disabled {
     base schedule-state;
     description
       "Indicates a recurrence with a disabled state.";
   }
+
   identity out-of-date {
     base schedule-state;
     description
@@ -2274,7 +2289,7 @@ module ietf-schedule {
 
   identity discard-action {
     description
-      "Indicates that schedule will be discarded.";
+      "Indicates that a schedule will be discarded.";
   }
 
   identity warning {
@@ -2283,12 +2298,14 @@ module ietf-schedule {
       "Indicates that a warning message is generated
        when a schedule is discarded.";
   }
+
   identity error {
     base discard-action;
     description
       "Indicates that an error message is generated
        when a schedule is discarded.";
   }
+
   identity silently-discard {
     base discard-action;
     description
@@ -2298,18 +2315,15 @@ module ietf-schedule {
 
   grouping generic-schedule-params {
     description
-      "Incldues a set of generic configuration parameters that are
+      "Includes a set of generic parameters that are
        followed by the entity that supports schedules.
-
-       These parameters apply to all schedules.
 
        Such parameters are used as guards to prevent, e.g., stale
        configuration.";
     leaf time-zone-identifier {
       type sys:timezone-name;
       description
-        "Indicates the identifier for the time zone in a time zone
-         database.";
+        "Indicates the identifier for the time zone.";
     }
     leaf validity {
       type yang:date-and-time;
@@ -2322,21 +2336,20 @@ module ietf-schedule {
     leaf max-allowed-start {
       type yang:date-and-time;
       description
-        "Specifies the maximum scheduled start date and time, a
-         requested schedule instance whose first occurrence after
+        "Specifies the maximum scheduled start date and time.
+         A requested schedule whose first instance occurrs after
          this value cannot be accepted by the entity. Specifically,
          a requested schedule will be rejected if the first
-         occurrence of that new schedule exceeds
-         'max-allowed-start'.";
+         occurrence of that schedule exceeds 'max-allowed-start'.";
     }
     leaf min-allowed-start {
       type yang:date-and-time;
       description
-        "Specifies the minimum scheduled start date and time, a
-         requested schedule instance whose first occurrence before
+        "Specifies the minimum scheduled start date and time.
+         A requested schedule whose first instance occurrs before
          this value cannot be accepted by the entity. Specifically,
          a requested schedule will be rejected if the first
-         occurrence of that new schedule is scheduled before
+         occurrence of that schedule is scheduled before
          'min-allowed-start'.";
     }
     leaf max-allowed-end {
@@ -2378,7 +2391,7 @@ module ietf-schedule {
     choice period-type {
       description
         "Indicates the type of the time period. Two types are
-          supported.";
+         supported.";
       case explicit {
         description
           "A period of time is identified by its start and its end.
@@ -2397,8 +2410,8 @@ module ietf-schedule {
       }
       case duration {
         description
-          "A period of time is defined by a start and a
-           positive duration of time.";
+          "A period of time is defined by a start and a positive
+           duration of time.";
         leaf duration {
           type duration {
             pattern 'P((([0-9]+)D)?(T(0[0-9]|1[0-9]|2[0-3])'
@@ -2432,8 +2445,7 @@ module ietf-schedule {
       }
       mandatory true;
       description
-        "This parameter is defined to identify the frequency type of
-         the recurrence rule.";
+        "Specifies the frequency type of the recurrence rule.";
     }
     leaf interval {
       type uint32;
@@ -2505,9 +2517,8 @@ module ietf-schedule {
           units "seconds";
           description
             "When specified, it refers to the duration of each
-             occurrence. The duration is in units of seconds. The
-             exact duration also applies to all the recurrence
-             instance.";
+             occurrence. The exact duration also applies to all
+             the recurrence instance.";
         }
       }
     }
@@ -2547,14 +2558,14 @@ module ietf-schedule {
     description
       "This grouping defines an aggregate set of repeating
        occurrences with UTC time format. The recurrence instances
-       are specified by the union of occurrences defined by both
-       the recurrence rule and 'period-timeticks' list. Duplicate
+       are specified by the occurrences defined by both the
+       recurrence rule and 'period-timeticks' list. Duplicate
        instances are ignored.";
     uses recurrence-utc;
     list period-timeticks {
       key "period-start";
       description
-        "A list of period with timeticks formats.";
+        "A list of periods with timeticks formats.";
       leaf period-start {
         type yang:timeticks;
         must
@@ -2591,40 +2602,38 @@ module ietf-schedule {
     description
       "This grouping defines an aggregate set of repeating
        occurrences with local time format and time zone specified.
-       The recurrence instances are specified by the union of
-       occurrences defined by both the recurrence rule and 'period'
-       list. Duplicate instances are ignored.";
+       The recurrence instances are specified by the occurrences
+       defined by both the recurrence rule and 'period' list.
+       Duplicate instances are ignored.";
     uses recurrence-with-time-zone;
     list period {
       key "period-start";
       description
-        "A list of period with date-and-time formats.";
+        "A list of periods with date-and-time formats.";
       uses period-of-time;
     }
   }
 
   grouping icalendar-recurrence {
     description
-      "This grouping is defined to identify properties that
-       contain a recurrence rule.";
+      "This grouping specifies properties of a recurrence rule.";
     reference
-      "RFC 5545: Internet Calendaring and Scheduling
-                 Core Object Specification (iCalendar),
-                 Section 3.8.5";
+      "RFC 5545: Internet Calendaring and Scheduling Core Object
+                 Specification (iCalendar), Section 3.8.5";
     uses recurrence-time-zone-with-date-times;
     leaf-list bysecond {
       type uint32 {
         range "0..60";
       }
       description
-        "A list of seconds within a minute.";
+        "Specifies a list of seconds within a minute.";
     }
     leaf-list byminute {
       type uint32 {
         range "0..59";
       }
       description
-        "A list of minutes within an hour.";
+        "Specifies a list of minutes within an hour.";
     }
     leaf-list byhour {
       type uint32 {
@@ -2712,13 +2721,13 @@ module ietf-schedule {
 
   grouping schedule-status {
     description
-      "This grouping is defined to identify common properties of
-       scheduling status.";
+      "This grouping defines common properties of scheduling
+       status.";
     leaf schedule-id {
       type string;
       description
-        "The schedule identifier that globally identifies a
-         schedule in a device, controller, network, etc.
+        "The schedule identifier that uniquely identifies a
+         schedule within a device, controller, network, etc.
          The unicity scope depends on the implementation.";
     }
     leaf state {
@@ -2726,12 +2735,12 @@ module ietf-schedule {
         base schedule-state;
       }
       description
-        "The current state of the schedule.";
+        "Indicates the current state of the schedule.";
     }
     leaf version {
       type uint16;
       description
-        "The version number of the schedule.";
+        "Indicates the version number of the schedule.";
     }
     leaf schedule-type {
       type identityref {
@@ -2739,13 +2748,13 @@ module ietf-schedule {
       }
       config false;
       description
-        "The schedule type.";
+        "Reports the schedule type.";
     }
     leaf last-update {
       type yang:date-and-time;
       config false;
       description
-        "The timestamp that the schedule is last updated.";
+        "Reports the timestamp that the schedule is last updated.";
     }
     leaf counter {
       when "derived-from-or-self(../schedule-type, "
@@ -2762,7 +2771,7 @@ module ietf-schedule {
       type yang:date-and-time;
       config false;
       description
-        "The timestamp of last occurrence.";
+        "Indicates the timestamp of last occurrence.";
     }
     leaf upcoming-occurrence {
       when "derived-from-or-self(../schedule-type, "
@@ -2771,7 +2780,7 @@ module ietf-schedule {
       type yang:date-and-time;
       config false;
       description
-        "The timestamp of next occurrence.";
+        "Indicates the timestamp of next occurrence.";
     }
   }
 }
@@ -2837,7 +2846,7 @@ module ietf-schedule {
         name:               ietf-schedule
         namespace:          urn:ietf:params:xml:ns:yang:ietf-schedule
         prefix:             schedule
-        maintained by IANA: N
+        maintained by IANA? N
         reference:          RFC XXXX
 </pre><a href="#section-8.2-2" class="pilcrow">¶</a>
 </div>
@@ -2883,6 +2892,10 @@ module ietf-schedule {
         <dd>
 <span class="refAuthor">Schoenwaelder, J., Ed.</span>, <span class="refTitle">"Common YANG Data Types"</span>, <span class="seriesInfo">RFC 6991</span>, <span class="seriesInfo">DOI 10.17487/RFC6991</span>, <time datetime="2013-07" class="refDate">July 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6991">https://www.rfc-editor.org/rfc/rfc6991</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC7317">[RFC7317]</dt>
+        <dd>
+<span class="refAuthor">Bierman, A.</span> and <span class="refAuthor">M. Bjorklund</span>, <span class="refTitle">"A YANG Data Model for System Management"</span>, <span class="seriesInfo">RFC 7317</span>, <span class="seriesInfo">DOI 10.17487/RFC7317</span>, <time datetime="2014-08" class="refDate">August 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7317">https://www.rfc-editor.org/rfc/rfc7317</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC7950">[RFC7950]</dt>
         <dd>
 <span class="refAuthor">Bjorklund, M., Ed.</span>, <span class="refTitle">"The YANG 1.1 Data Modeling Language"</span>, <span class="seriesInfo">RFC 7950</span>, <span class="seriesInfo">DOI 10.17487/RFC7950</span>, <time datetime="2016-08" class="refDate">August 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7950">https://www.rfc-editor.org/rfc/rfc7950</a>&gt;</span>. </dd>
@@ -2926,7 +2939,7 @@ module ietf-schedule {
 <dd class="break"></dd>
 <dt id="I-D.ietf-opsawg-ucl-acl">[I-D.ietf-opsawg-ucl-acl]</dt>
         <dd>
-<span class="refAuthor">Ma, Q.</span>, <span class="refAuthor">Wu, Q.</span>, <span class="refAuthor">Boucadair, M.</span>, and <span class="refAuthor">D. King</span>, <span class="refTitle">"A YANG Data Model and RADIUS Extension for Policy-based Network Access Control"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-ucl-acl-03</span>, <time datetime="2024-02-02" class="refDate">2 February 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ucl-acl-03">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ucl-acl-03</a>&gt;</span>. </dd>
+<span class="refAuthor">Ma, Q.</span>, <span class="refAuthor">Wu, Q.</span>, <span class="refAuthor">Boucadair, M.</span>, and <span class="refAuthor">D. King</span>, <span class="refTitle">"A YANG Data Model and RADIUS Extension for Policy-based Network Access Control"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-ucl-acl-04</span>, <time datetime="2024-06-06" class="refDate">6 June 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ucl-acl-04">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ucl-acl-04</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-tvr-schedule-yang">[I-D.ietf-tvr-schedule-yang]</dt>
         <dd>
@@ -2935,6 +2948,10 @@ module ietf-schedule {
 <dt id="I-D.ietf-tvr-use-cases">[I-D.ietf-tvr-use-cases]</dt>
         <dd>
 <span class="refAuthor">Birrane, E. J.</span>, <span class="refAuthor">Kuhn, N.</span>, <span class="refAuthor">Qu, Y.</span>, <span class="refAuthor">Taylor, R.</span>, and <span class="refAuthor">L. Zhang</span>, <span class="refTitle">"TVR (Time-Variant Routing) Use Cases"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-tvr-use-cases-09</span>, <time datetime="2024-02-29" class="refDate">29 February 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-tvr-use-cases-09">https://datatracker.ietf.org/doc/html/draft-ietf-tvr-use-cases-09</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.liu-netmod-yang-schedule">[I-D.liu-netmod-yang-schedule]</dt>
+        <dd>
+<span class="refAuthor">Liu, X.</span>, <span class="refAuthor">Bryskin, I.</span>, <span class="refAuthor">Beeram, V. P.</span>, <span class="refAuthor">Saad, T.</span>, <span class="refAuthor">Shah, H. C.</span>, and <span class="refAuthor">O. G. de Dios</span>, <span class="refTitle">"A YANG Data Model for Configuration Scheduling"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-liu-netmod-yang-schedule-05</span>, <time datetime="2018-03-01" class="refDate">1 March 2018</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-liu-netmod-yang-schedule-05">https://datatracker.ietf.org/doc/html/draft-liu-netmod-yang-schedule-05</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC3339">[RFC3339]</dt>
         <dd>
@@ -2958,10 +2975,10 @@ module ietf-schedule {
 <a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-examples-of-format-represen" class="section-name selfRef">Examples of Format Representation</a>
       </h2>
 <p id="appendix-A-1">This section provides some examples to illustrate the use of the
-   period and recurrence formats defined as YANG groupings. Note that "grouping"
-   does not define any data nodes in the schema tree, the examples illustrated are
-   just for the ease of understanding. Only the message body is provided with
-   JSON used for encoding <span>[<a href="#RFC7951" class="cite xref">RFC7951</a>]</span>.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+   period and recurrence formats defined in <a href="#sec-schedule" class="auto internal xref">Section 6</a>. Note that a "grouping"
+   does not define any data nodes in the schema tree; the examples illustrated are
+   thus for the ease of understanding. Only the message body is provided with
+   JSON used for encoding per the guidance in <span>[<a href="#RFC7951" class="cite xref">RFC7951</a>]</span>.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 <div id="the-generic-schedule-params-grouping">
 <section id="appendix-A.1">
         <h3 id="name-the-generic-schedule-params-">
@@ -2993,8 +3010,8 @@ module ietf-schedule {
         <h3 id="name-the-period-of-time-grouping-2">
 <a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-the-period-of-time-grouping-2" class="section-name selfRef">The "period-of-time" Grouping</a>
         </h3>
-<p id="appendix-A.2-1">The example of a period that starts at 08:00:00 UTC, on January 1, 2025 and ends at 18:00:00 UTC
-   on December 31, 2027 is encoded as shown in <a href="#ex-1" class="auto internal xref">Figure 12</a>.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-1"><a href="#ex-1" class="auto internal xref">Figure 12</a> shows an example of a period that starts at 08:00:00 UTC, on January 1, 2025 and ends at 18:00:00 UTC
+   on December 31, 2027.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
 <span id="name-simple-start-end-schedule"></span><div id="ex-1">
 <figure id="figure-12">
           <div class="alignLeft art-text artwork" id="appendix-A.2-2.1">
@@ -3611,6 +3628,7 @@ module example-scheduled-link-bandwidth {
    for their valuable comments and inputs to this work.<a href="#appendix-C-2" class="pilcrow">¶</a></p>
 <p id="appendix-C-3">Many thanks to the authors of <span>[<a href="#I-D.ietf-tvr-schedule-yang" class="cite xref">I-D.ietf-tvr-schedule-yang</a>]</span>, <span>[<a href="#I-D.contreras-opsawg-scheduling-oam-tests" class="cite xref">I-D.contreras-opsawg-scheduling-oam-tests</a>]</span>, and <span>[<a href="#I-D.ietf-netmod-eca-policy" class="cite xref">I-D.ietf-netmod-eca-policy</a>]</span>
    for the constructive discussion during IETF#118.<a href="#appendix-C-3" class="pilcrow">¶</a></p>
+<p id="appendix-C-4">Other related efforts were explored in the past, e.g., <span>[<a href="#I-D.liu-netmod-yang-schedule" class="cite xref">I-D.liu-netmod-yang-schedule</a>]</span>.<a href="#appendix-C-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
