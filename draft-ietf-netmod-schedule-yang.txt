@@ -5,11 +5,11 @@
 netmod                                                        Q. Ma, Ed.
 Internet-Draft                                                     Q. Wu
 Intended status: Standards Track                                  Huawei
-Expires: 19 December 2024                              M. Boucadair, Ed.
+Expires: 21 December 2024                              M. Boucadair, Ed.
                                                                   Orange
                                                                  D. King
                                                     Lancaster University
-                                                            17 June 2024
+                                                            19 June 2024
 
 
                 A Common YANG Data Model for Scheduling
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 December 2024.
+   This Internet-Draft will expire on 21 December 2024.
 
 Copyright Notice
 
@@ -1062,6 +1062,11 @@ Table of Contents
 
           Such parameters are used as guards to prevent, e.g., stale
           configuration.";
+       leaf description {
+         type string;
+         description
+           "Provides a description of the schedule.";
+       }
        leaf time-zone-identifier {
          type sys:timezone-name;
          description
@@ -1117,6 +1122,11 @@ Table of Contents
        reference
          "RFC 5545: Internet Calendaring and Scheduling Core Object
                     Specification (iCalendar), Section 3.3.9";
+       leaf description {
+         type string;
+         description
+           "Provides a description of the period.";
+       }
        leaf period-start {
          type yang:date-and-time;
          description
@@ -1180,6 +1190,11 @@ Table of Contents
              "Defines the instant date and time of the first instance
               in the recurrence set.";
          }
+       }
+       leaf description {
+         type string;
+         description
+           "Provides a description of the recurrence.";
        }
        leaf frequency {
          type identityref {
@@ -1405,10 +1420,9 @@ Table of Contents
          leaf weekday {
            type schedule:weekday;
            description
-             "Corredponds to seven days of the week.";
+             "Corresponds to seven days of the week.";
          }
        }
-
        leaf-list bymonthday {
          type int32 {
            range "-31..-1|1..31";
@@ -1523,6 +1537,24 @@ Table of Contents
          config false;
          description
            "Indicates the timestamp of next occurrence.";
+       }
+       leaf last-failed-occurrence {
+         when "derived-from-or-self(../schedule-type, "
+            + "'schedule:recurrence')";
+         type yang:date-and-time;
+         config false;
+         description
+           "Indicates the timestamp of last failed action triggered by
+            the schedule.";
+       }
+       leaf failure-counter {
+         when "derived-from-or-self(../schedule-type, "
+            + "'schedule:recurrence')";
+         type uint32;
+         config false;
+         description
+           "Counts the number of failures while invoking the scheduled
+            action.";
        }
      }
    }
