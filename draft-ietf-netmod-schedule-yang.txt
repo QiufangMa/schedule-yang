@@ -5,11 +5,11 @@
 netmod                                                        Q. Ma, Ed.
 Internet-Draft                                                     Q. Wu
 Intended status: Standards Track                                  Huawei
-Expires: 21 December 2024                              M. Boucadair, Ed.
+Expires: 22 December 2024                              M. Boucadair, Ed.
                                                                   Orange
                                                                  D. King
                                                     Lancaster University
-                                                            19 June 2024
+                                                            20 June 2024
 
 
                 A Common YANG Data Model for Scheduling
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 December 2024.
+   This Internet-Draft will expire on 22 December 2024.
 
 Copyright Notice
 
@@ -83,14 +83,15 @@ Table of Contents
      3.9.  The "schedule-status" Grouping
    4.  Features and Augmentations
    5.  Note and Restrictions
-   6.  The "ietf-schedule" YANG Module
-   7.  Security Considerations
-   8.  IANA Considerations
-     8.1.  The "IETF XML" Registry
-     8.2.  The "YANG Module Names" Registry
-   9.  References
-     9.1.  Normative References
-     9.2.  Informative References
+   6.  Relationship to the DISMAN-SCHEDULE-MIB
+   7.  The "ietf-schedule" YANG Module
+   8.  Security Considerations
+   9.  IANA Considerations
+     9.1.  The "IETF XML" Registry
+     9.2.  The "YANG Module Names" Registry
+   10. References
+     10.1.  Normative References
+     10.2.  Informative References
    Appendix A.  Examples of Format Representation
      A.1.  The "generic-schedule-params" Grouping
      A.2.  The "period-of-time" Grouping
@@ -156,7 +157,7 @@ Table of Contents
 
 3.  Module Overview
 
-   The "ietf-schedule" module (Section 6) defines the following
+   The "ietf-schedule" module (Section 7) defines the following
    groupings:
 
    *  "generic-schedule-params" (Section 3.1)
@@ -217,6 +218,7 @@ Table of Contents
    module: ietf-schedule
 
      grouping generic-schedule-params:
+       +-- description?            string
        +-- time-zone-identifier?   sys:timezone-name
        +-- validity?               yang:date-and-time
        +-- max-allowed-start?      yang:date-and-time
@@ -282,7 +284,8 @@ Table of Contents
      grouping generic-schedule-params:
        ...
      grouping period-of-time:
-       +-- period-start?           yang:date-and-time
+       +-- description?            string
+       +-- period-start            yang:date-and-time
        +-- time-zone-identifier?   sys:timezone-name
        +-- (period-type)?
           +--:(explicit)
@@ -318,15 +321,9 @@ Table of Contents
      grouping period-of-time:
        ...
      grouping recurrence:
-       +-- recurrence-first
-       |  +-- date-time-start?   yang:date-and-time
-       +-- frequency           identityref
-       +-- interval?           uint32
-       +-- (recurrence-bound)?
-          +--:(until)
-          |  +-- until?        yang:date-and-time
-          +--:(count)
-             +-- count?        uint32
+       +-- description?   string
+       +-- frequency      identityref
+       +-- interval?      uint32
      grouping recurrence-utc:
        ...
      grouping recurrence-with-time-zone:
@@ -380,15 +377,16 @@ Table of Contents
        ...
      grouping recurrence-utc:
        +-- recurrence-first
-       |  +-- date-time-start?   yang:date-and-time
-       |  +-- duration?          int32
+       |  +-- utc-start-time?   yang:date-and-time
+       |  +-- duration?         uint32
+       +-- (recurrence-bound)?
+       |  +--:(until)
+       |  |  +-- utc-until?    yang:date-and-time
+       |  +--:(count)
+       |     +-- count?        uint32
+       +-- description?        string
        +-- frequency           identityref
        +-- interval?           uint32
-       +-- (recurrence-bound)?
-          +--:(until)
-          |  +-- until?        yang:date-and-time
-          +--:(count)
-             +-- count?        uint32
      grouping recurrence-with-time-zone:
        ...
      grouping recurrence-utc-with-date-times:
@@ -439,13 +437,14 @@ Table of Contents
        |  +-- date-time-start?        yang:date-and-time
        |  +-- duration?               duration
        |  +-- time-zone-identifier?   sys:timezone-name
+       +-- (recurrence-bound)?
+       |  +--:(until)
+       |  |  +-- until?        yang:date-and-time
+       |  +--:(count)
+       |     +-- count?        uint32
+       +-- description?        string
        +-- frequency           identityref
        +-- interval?           uint32
-       +-- (recurrence-bound)?
-          +--:(until)
-          |  +-- until?        yang:date-and-time
-          +--:(count)
-             +-- count?        uint32
      grouping recurrence-utc-with-date-times:
        ...
      grouping recurrence-time-zone-with-date-times:
@@ -491,15 +490,16 @@ Table of Contents
        ...
      grouping recurrence-utc-with-date-times:
        +-- recurrence-first
-       |  +-- date-time-start?   yang:date-and-time
-       |  +-- duration?          int32
-       +-- frequency           identityref
-       +-- interval?           uint32
+       |  +-- utc-start-time?   yang:date-and-time
+       |  +-- duration?         uint32
        +-- (recurrence-bound)?
        |  +--:(until)
-       |  |  +-- until?        yang:date-and-time
+       |  |  +-- utc-until?    yang:date-and-time
        |  +--:(count)
        |     +-- count?        uint32
+       +-- description?        string
+       +-- frequency           identityref
+       +-- interval?           uint32
        +-- period-timeticks* [period-start]
           +-- period-start    yang:timeticks
           +-- period-end?     yang:timeticks
@@ -545,14 +545,16 @@ Table of Contents
        |  +-- date-time-start?        yang:date-and-time
        |  +-- duration?               duration
        |  +-- time-zone-identifier?   sys:timezone-name
-       +-- frequency           identityref
-       +-- interval?           uint32
        +-- (recurrence-bound)?
        |  +--:(until)
        |  |  +-- until?        yang:date-and-time
        |  +--:(count)
        |     +-- count?        uint32
+       +-- description?        string
+       +-- frequency           identityref
+       +-- interval?           uint32
        +-- period* [period-start]
+          +-- description?            string
           +-- period-start            yang:date-and-time
           +-- time-zone-identifier?   sys:timezone-name
           +-- (period-type)?
@@ -602,14 +604,16 @@ Table of Contents
        |  +-- date-time-start?        yang:date-and-time
        |  +-- duration?               duration
        |  +-- time-zone-identifier?   sys:timezone-name
-       +-- frequency           identityref
-       +-- interval?           uint32
        +-- (recurrence-bound)?
        |  +--:(until)
        |  |  +-- until?        yang:date-and-time
        |  +--:(count)
        |     +-- count?        uint32
+       +-- description?        string
+       +-- frequency           identityref
+       +-- interval?           uint32
        +-- period* [period-start]
+       |  +-- description             string
        |  +-- period-start            yang:date-and-time
        |  +-- time-zone-identifier?   sys:timezone-name
        |  +-- (period-type)?
@@ -622,7 +626,7 @@ Table of Contents
        +-- byhour*             uint32
        +-- byday* [weekday]
        |  +-- direction*   int32
-       |  +-- weekday     schedule:weekday
+       |  +-- weekday      schedule:weekday
        +-- bymonthday*         int32
        +-- byyearday*          int32
        +-- byyearweek*         int32
@@ -700,14 +704,17 @@ Table of Contents
      grouping icalendar-recurrence:
        ...
      grouping schedule-status:
-       +-- schedule-id?           string
-       +-- state?                 identityref
-       +-- version?               uint16
-       +--ro schedule-type?         identityref
-       +--ro last-update?           yang:date-and-time
-       +--ro counter?               uint32
-       +--ro last-occurrence?       yang:date-and-time
-       +--ro upcoming-occurrence?   yang:date-and-time
+       +-- schedule-id?              string
+       +-- state?                    identityref
+       +-- version?                  uint16
+       +-- schedule-type?            identityref
+       +--ro local-time?               yang:date-and-time
+       +--ro last-update?              yang:date-and-time
+       +--ro counter?                  uint32
+       +--ro last-occurrence?          yang:date-and-time
+       +--ro upcoming-occurrence?      yang:date-and-time
+       +--ro last-failed-occurrence?   yang:date-and-time
+       +--ro failure-counter?          uint32
 
              Figure 10: Schedule Status Grouping Tree Structure
 
@@ -787,7 +794,61 @@ Table of Contents
    *  Schedules received with a starting time in the past with respect
       to current time SHOULD be ignored.
 
-6.  The "ietf-schedule" YANG Module
+6.  Relationship to the DISMAN-SCHEDULE-MIB
+
+   [RFC3231] specifies a Management Information Base (MIB) used to
+   schedule management operations periodically or at specified dates and
+   times.
+
+   Despite no data nodes are defined in this document, Table 1 lists how
+   main objects in the DISMAN-SCHEDULE-MIB can be mapped to YANG
+   parameters.
+
+               +==================+========================+
+               | MIB Object       | YANG                   |
+               +==================+========================+
+               | schedLocalTime   | local-time             |
+               +------------------+------------------------+
+               | schedType        | schedule-type          |
+               +------------------+------------------------+
+               | schedName        | schedule-id            |
+               +------------------+------------------------+
+               | schedOwner       | Not Supported          |
+               +------------------+------------------------+
+               | schedDescr       | description            |
+               +------------------+------------------------+
+               | schedInterval    | interval               |
+               +------------------+------------------------+
+               | schedWeekDay     | weekday                |
+               +------------------+------------------------+
+               | schedMonth       | byyearmonth            |
+               +------------------+------------------------+
+               | schedDay         | bymonthday             |
+               +------------------+------------------------+
+               | schedHour        | byhour                 |
+               +------------------+------------------------+
+               | schedMinute      | byminute               |
+               +------------------+------------------------+
+               | schedContextName | Not Supported          |
+               +------------------+------------------------+
+               | schedAdminStatus | state                  |
+               +------------------+------------------------+
+               | schedOperStatus  | state                  |
+               +------------------+------------------------+
+               | schedFailures    | failure-counter        |
+               +------------------+------------------------+
+               | schedLastFailure | Not Supported          |
+               +------------------+------------------------+
+               | schedLastFailed  | last-failed-occurrence |
+               +------------------+------------------------+
+               | schedStorageType | Not Supported          |
+               +------------------+------------------------+
+               | schedValue       | Not Supported          |
+               +------------------+------------------------+
+
+                         Table 1: YANG/MIB Mapping
+
+7.  The "ietf-schedule" YANG Module
 
    This module imports types defined in [RFC6991] and [RFC7317].
 
@@ -994,10 +1055,19 @@ Table of Contents
          "Base identity for schedule type.";
      }
 
+     identity one-shot {
+       base schedule-type;
+       description
+         "Indicates a one-shot schedule. That is a schedule that
+          will trigger an action without the duration/end time being
+          specified and then the schedule will disable itself.";
+     }
+
      identity period {
        base schedule-type;
        description
-         "Indicates a period-based schedule.";
+         "Indicates a period-based schedule consisting either a
+          start and end or a start and positive duration of time.";
      }
 
      identity recurrence {
@@ -1015,6 +1085,13 @@ Table of Contents
        base schedule-state;
        description
          "Indicates a recurrence with an enabled state.";
+     }
+
+     identity finished {
+       base schedule-state;
+       description
+         "Indicates a recurrence with a finished state.
+          The finished state indicates that the schedule has ended.";
      }
 
      identity disabled {
@@ -1057,8 +1134,8 @@ Table of Contents
 
      grouping generic-schedule-params {
        description
-         "Includes a set of generic parameters that are
-          followed by the entity that supports schedules.
+         "Includes a set of generic parameters that are followed by
+          the entity that supports schedules.
 
           Such parameters are used as guards to prevent, e.g., stale
           configuration.";
@@ -1519,9 +1596,15 @@ Table of Contents
          type identityref {
            base schedule-type;
          }
+         description
+           "Indicates the schedule type.";
+       }
+       leaf local-time {
+         type yang:date-and-time;
          config false;
          description
-           "Reports the schedule type.";
+           "Reports the local time as used by the entity that
+            hosts the schedule.";
        }
        leaf last-update {
          type yang:date-and-time;
@@ -1577,7 +1660,7 @@ Table of Contents
    }
    <CODE ENDS>
 
-7.  Security Considerations
+8.  Security Considerations
 
    This section uses the template described in Section 3.7 of
    [I-D.ietf-netmod-rfc8407bis].
@@ -1602,9 +1685,9 @@ Table of Contents
    no additional security issues related to the "ietf- schedule" module
    that need to be considered.
 
-8.  IANA Considerations
+9.  IANA Considerations
 
-8.1.  The "IETF XML" Registry
+9.1.  The "IETF XML" Registry
 
    This document registers the following URI in the "IETF XML Registry"
    [RFC3688].
@@ -1613,7 +1696,7 @@ Table of Contents
            Registrant Contact: The IESG.
            XML: N/A, the requested URI is an XML namespace.
 
-8.2.  The "YANG Module Names" Registry
+9.2.  The "YANG Module Names" Registry
 
    This document registers the following YANG module in the "YANG Module
    Names" registry [RFC6020].
@@ -1624,14 +1707,19 @@ Table of Contents
            maintained by IANA? N
            reference:          RFC XXXX
 
-9.  References
+10.  References
 
-9.1.  Normative References
+10.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/rfc/rfc2119>.
+
+   [RFC3231]  Levi, D. and J. Schoenwaelder, "Definitions of Managed
+              Objects for Scheduling Management Operations", RFC 3231,
+              DOI 10.17487/RFC3231, January 2002,
+              <https://www.rfc-editor.org/rfc/rfc3231>.
 
    [RFC3688]  Mealling, M., "The IETF XML Registry", BCP 81, RFC 3688,
               DOI 10.17487/RFC3688, January 2004,
@@ -1685,7 +1773,7 @@ Table of Contents
               Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
               <https://www.rfc-editor.org/rfc/rfc8446>.
 
-9.2.  Informative References
+10.2.  Informative References
 
    [I-D.contreras-opsawg-scheduling-oam-tests]
               Contreras, L. M. and V. Lopez, "A YANG Data Model for
@@ -1755,7 +1843,7 @@ Table of Contents
 Appendix A.  Examples of Format Representation
 
    This section provides some examples to illustrate the use of the
-   period and recurrence formats defined in Section 6.  Note that a
+   period and recurrence formats defined in Section 7.  Note that a
    "grouping" does not define any data nodes in the schema tree; the
    examples illustrated are thus for the ease of understanding.  Only
    the message body is provided with JSON used for encoding per the
