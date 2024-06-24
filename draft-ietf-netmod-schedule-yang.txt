@@ -136,7 +136,7 @@ Table of Contents
    common schedule groupings (Section 3.3).  And Appendix B provides
    sample modules to exemplify how future modules can use the
    extensibility provisions in "ietf-schedule" (Section 6).  Also,
-   Appendix C provides examples of using "ietf-schedule" module for
+   Appendix C provides an example of using "ietf-schedule" module for
    scheduled use of resources framework (e.g., [RFC8413]).
 
 1.1.  Editorial Note (To be removed by RFC Editor)
