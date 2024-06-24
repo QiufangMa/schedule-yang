@@ -1284,7 +1284,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
-            <p id="section-toc.1-1.12.1"><a href="#appendix-C" class="auto internal xref">Appendix C</a>.  <a href="#name-examples-of-using-ietf-sche" class="internal xref">Examples of Using "ietf-schedule" Module in scheduled based Framework</a></p>
+            <p id="section-toc.1-1.12.1"><a href="#appendix-C" class="auto internal xref">Appendix C</a>.  <a href="#name-examples-of-using-ietf-sche" class="internal xref">Examples of Using "ietf-schedule" Module for Scheduled Use of Resources Framework</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
             <p id="section-toc.1-1.13.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
@@ -3909,13 +3909,13 @@ module example-scheduled-link-bandwidth {
 </div>
 </section>
 </div>
-<div id="examples-of-using-ietf-schedule-module-in-scheduled-based-framework">
+<div id="examples-of-using-ietf-schedule-module-for-scheduled-use-of-resources-framework">
 <section id="appendix-C">
       <h2 id="name-examples-of-using-ietf-sche">
-<a href="#appendix-C" class="section-number selfRef">Appendix C. </a><a href="#name-examples-of-using-ietf-sche" class="section-name selfRef">Examples of Using "ietf-schedule" Module in scheduled based Framework</a>
+<a href="#appendix-C" class="section-number selfRef">Appendix C. </a><a href="#name-examples-of-using-ietf-sche" class="section-name selfRef">Examples of Using "ietf-schedule" Module for Scheduled Use of Resources Framework</a>
       </h2>
 <p id="appendix-C-1">This section exemplifies how the architecture for supporting scheduled
-   reservation of TE resources in <span>[<a href="#RFC8413" class="cite xref">RFC8413</a>]</span> could leverage the "period-of-time"
+   reservation of Traffic Engineering (TE) resources in <span>[<a href="#RFC8413" class="cite xref">RFC8413</a>]</span> might leverage the "period-of-time"
    grouping defined in the "ietf-schedule" module to implement scheduled use of
    resources.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
 <p id="appendix-C-2">The following example module shows how a scheduled link capacity reservation
@@ -3958,8 +3958,8 @@ module example-scheduled-capacity-reservation {
 </pre><a href="#appendix-C-3" class="pilcrow">¶</a>
 </div>
 <p id="appendix-C-4"><span><a href="https://rfc-editor.org/rfc/rfc8413#section-4" class="relref">Section 4</a> of [<a href="#RFC8413" class="cite xref">RFC8413</a>]</span> defines the reference architecture for scheduled use
-   of resources, the service requester sends a request to the PCE and includes the
-   parameters of the LSP that the requester wishes to supply, the configuration
+   of resources, the service requester sends a request to a Path Computation Element (PCE) and includes the
+   parameters of the Label Switched Path (LSP) that the requester wishes to supply, the configuration
    example to provide the scheduled resource is shown in <a href="#ex-14" class="auto internal xref">Figure 25</a>.<a href="#appendix-C-4" class="pilcrow">¶</a></p>
 <span id="name-example-of-scheduled-links-b"></span><div id="ex-14">
 <figure id="figure-25">
