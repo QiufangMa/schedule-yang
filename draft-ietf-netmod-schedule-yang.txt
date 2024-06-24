@@ -111,8 +111,8 @@ Table of Contents
            Rule
      B.2.  Example: Schedule Network Properties to Change Based on
            Date and Time
-   Appendix C.  Examples of Using "ietf-schedule" Module in scheduled
-           based Framework
+   Appendix C.  Examples of Using "ietf-schedule" Module for Scheduled
+           Use of Resources Framework
    Acknowledgments
    Authors' Addresses
 
@@ -2437,13 +2437,13 @@ B.2.  Example: Schedule Network Properties to Change Based on Date and
 
               Figure 24: Example of Scheduled Link's Bandwidth
 
-Appendix C.  Examples of Using "ietf-schedule" Module in scheduled based
-             Framework
+Appendix C.  Examples of Using "ietf-schedule" Module for Scheduled Use
+             of Resources Framework
 
    This section exemplifies how the architecture for supporting
-   scheduled reservation of TE resources in [RFC8413] could leverage the
-   "period-of-time" grouping defined in the "ietf-schedule" module to
-   implement scheduled use of resources.
+   scheduled reservation of Traffic Engineering (TE) resources in
+   [RFC8413] might leverage the "period-of-time" grouping defined in the
+   "ietf-schedule" module to implement scheduled use of resources.
 
    The following example module shows how a scheduled link capacity
    reservation could be defined.
@@ -2484,9 +2484,10 @@ Appendix C.  Examples of Using "ietf-schedule" Module in scheduled based
 
    Section 4 of [RFC8413] defines the reference architecture for
    scheduled use of resources, the service requester sends a request to
-   the PCE and includes the parameters of the LSP that the requester
-   wishes to supply, the configuration example to provide the scheduled
-   resource is shown in Figure 25.
+   a Path Computation Element (PCE) and includes the parameters of the
+   Label Switched Path (LSP) that the requester wishes to supply, the
+   configuration example to provide the scheduled resource is shown in
+   Figure 25.
 
    <?xml version="1.0" encoding="utf-8"?>
    <link-capability-reservations
