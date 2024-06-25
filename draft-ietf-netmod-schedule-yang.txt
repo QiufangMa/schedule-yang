@@ -712,7 +712,7 @@ Table of Contents
        +-- byhour*                   uint32
        +-- byday* [weekday]
        |  +-- direction*   int32
-       |  +-- weekday?     schedule:weekday
+       |  +-- weekday      schedule:weekday
        +-- bymonthday*               int32
        +-- byyearday*                int32
        +-- byyearweek*               int32
