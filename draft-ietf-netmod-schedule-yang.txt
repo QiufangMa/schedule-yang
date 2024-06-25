@@ -5,11 +5,11 @@
 netmod                                                        Q. Ma, Ed.
 Internet-Draft                                                     Q. Wu
 Intended status: Standards Track                                  Huawei
-Expires: 26 December 2024                              M. Boucadair, Ed.
+Expires: 27 December 2024                              M. Boucadair, Ed.
                                                                   Orange
                                                                  D. King
                                                     Lancaster University
-                                                            24 June 2024
+                                                            25 June 2024
 
 
                 A Common YANG Data Model for Scheduling
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 December 2024.
+   This Internet-Draft will expire on 27 December 2024.
 
 Copyright Notice
 
@@ -307,6 +307,8 @@ Table of Contents
        ...
      grouping schedule-status:
        ...
+     grouping schedule-status-with-name:
+       ...
 
           Figure 2: Generic Schedule Configuration Tree Structure
 
@@ -348,7 +350,7 @@ Table of Contents
    ("duration").  For the first format, the start of the period MUST be
    before the end of the period.
 
-   The "description" includes a description of the period.  No
+   The "period-description" includes a description of the period.  No
    constraint is imposed on the structure nor the use of this parameter.
 
    module: ietf-schedule
@@ -356,7 +358,7 @@ Table of Contents
      grouping generic-schedule-params:
        ...
      grouping period-of-time:
-       +-- description?            string
+       +-- period-description?     string
        +-- period-start            yang:date-and-time
        +-- time-zone-identifier?   sys:timezone-name
        +-- (period-type)?
@@ -378,6 +380,8 @@ Table of Contents
        ...
      grouping schedule-status:
        ...
+     grouping schedule-status-with-name:
+       ...
 
               Figure 3: Period of Time Grouping Tree Structure
 
@@ -393,7 +397,7 @@ Table of Contents
      grouping period-of-time:
        ...
      grouping recurrence:
-       +-- description?   string
+       +-- recurrence-description?   string
        +-- frequency      identityref
        +-- interval?      uint32
      grouping recurrence-utc:
@@ -407,6 +411,8 @@ Table of Contents
      grouping icalendar-recurrence:
        ...
      grouping schedule-status:
+       ...
+     grouping schedule-status-with-name:
        ...
 
                 Figure 4: recurrence Grouping Tree Structure
@@ -426,8 +432,9 @@ Table of Contents
    because there are cases (e.g., profiling) where the use of the
    default is problematic.
 
-   The "description" includes a description of the period.  No
-   constraint is imposed on the structure nor the use of this parameter.
+   The "recurrence-description" includes a description of the period.
+   No constraint is imposed on the structure nor the use of this
+   parameter.
 
 3.3.4.  The "recurrence-utc" Grouping
 
@@ -451,7 +458,7 @@ Table of Contents
        |  |  +-- utc-until?    yang:date-and-time
        |  +--:(count)
        |     +-- count?        uint32
-       +-- description?        string
+       +-- recurrence-description?        string
        +-- frequency           identityref
        +-- interval?           uint32
      grouping recurrence-with-time-zone:
@@ -463,6 +470,8 @@ Table of Contents
      grouping icalendar-recurrence:
        ...
      grouping schedule-status:
+       ...
+     grouping schedule-status-with-name:
        ...
 
               Figure 5: recurrence-utc Grouping Tree Structure
@@ -511,7 +520,7 @@ Table of Contents
        |  |  +-- until?        yang:date-and-time
        |  +--:(count)
        |     +-- count?        uint32
-       +-- description?        string
+       +-- recurrence-description?        string
        +-- frequency           identityref
        +-- interval?           uint32
      grouping recurrence-utc-with-date-times:
@@ -521,6 +530,8 @@ Table of Contents
      grouping icalendar-recurrence:
        ...
      grouping schedule-status:
+       ...
+     grouping schedule-status-with-name:
        ...
 
         Figure 6: recurrence-with-time-zone Grouping Tree Structure
@@ -568,7 +579,7 @@ Table of Contents
        |  |  +-- utc-until?    yang:date-and-time
        |  +--:(count)
        |     +-- count?        uint32
-       +-- description?        string
+       +-- recurrence-description?        string
        +-- frequency           identityref
        +-- interval?           uint32
        +-- period-timeticks* [period-start]
@@ -579,6 +590,8 @@ Table of Contents
      grouping icalendar-recurrence:
        ...
      grouping schedule-status:
+       ...
+     grouping schedule-status-with-name:
        ...
 
       Figure 7: recurrence-utc-with-date-times Grouping Tree Structure
@@ -621,7 +634,7 @@ Table of Contents
        |  |  +-- until?        yang:date-and-time
        |  +--:(count)
        |     +-- count?        uint32
-       +-- description?        string
+       +-- recurrence-description?        string
        +-- frequency           identityref
        +-- interval?           uint32
        +-- period* [period-start]
@@ -636,6 +649,8 @@ Table of Contents
      grouping icalendar-recurrence:
        ...
      grouping schedule-status:
+       ...
+     grouping schedule-status-with-name:
        ...
 
         Figure 8: recurrence-time-zone-with-date-times Grouping Tree
@@ -706,6 +721,8 @@ Table of Contents
        +-- workweek-start?     schedule:weekday
        +-- exception-dates*    yang:date-and-time
      grouping schedule-status:
+       ...
+     grouping schedule-status-with-name:
        ...
 
            Figure 9: icalendar-recurrence Grouping Tree Structure
@@ -784,11 +801,11 @@ Table of Contents
        +-- schedule-type?            identityref
        +--ro local-time?               yang:date-and-time
        +--ro last-update?              yang:date-and-time
-       +--ro counter?                  uint32
+       +--ro counter?                  yang:counter32
        +--ro last-occurrence?          yang:date-and-time
        +--ro upcoming-occurrence?      yang:date-and-time
        +--ro last-failed-occurrence?   yang:date-and-time
-       +--ro failure-counter?          uint32
+       +--ro failure-counter?          yang:counter32
      grouping schedule-status-with-name:
        +-- schedule-id?              string
        +-- state?                    identityref
@@ -796,11 +813,11 @@ Table of Contents
        +-- schedule-type?            identityref
        +--ro local-time?               yang:date-and-time
        +--ro last-update?              yang:date-and-time
-       +--ro counter?                  uint32
+       +--ro counter?                  yang:counter32
        +--ro last-occurrence?          yang:date-and-time
        +--ro upcoming-occurrence?      yang:date-and-time
        +--ro last-failed-occurrence?   yang:date-and-time
-       +--ro failure-counter?          uint32
+       +--ro failure-counter?          yang:counter32
 
       Figure 10: Schedule Status with and without Name Groupings Tree
                                  Structure
@@ -1279,7 +1296,7 @@ Table of Contents
        reference
          "RFC 5545: Internet Calendaring and Scheduling Core Object
                     Specification (iCalendar), Section 3.3.9";
-       leaf description {
+       leaf period-description {
          type string;
          description
            "Provides a description of the period.";
@@ -1339,7 +1356,7 @@ Table of Contents
      grouping recurrence {
        description
          "A simple definition of recurrence.";
-       leaf description {
+       leaf recurrence-description {
          type string;
          description
            "Provides a description of the recurrence.";
@@ -1688,7 +1705,7 @@ Table of Contents
        leaf counter {
          when "derived-from-or-self(../schedule-type, "
             + "'schedule:recurrence')";
-         type uint32;
+         type yang:counter32;
          config false;
          description
            "The counter of occurrences since the schedule was enabled.
@@ -1723,7 +1740,7 @@ Table of Contents
        leaf failure-counter {
          when "derived-from-or-self(../schedule-type, "
             + "'schedule:recurrence')";
-         type uint32;
+         type yang:counter32;
          config false;
          description
            "Counts the number of failures while invoking the scheduled
