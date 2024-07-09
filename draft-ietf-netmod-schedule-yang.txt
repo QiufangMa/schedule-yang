@@ -27,10 +27,10 @@ Discussion Venues
 
    This note is to be removed before publishing as an RFC.
 
-   Discussion of this document takes place on the Operations and
-   Management Area Working Group Working Group mailing list
-   (opsawg@ietf.org), which is archived at
-   https://mailarchive.ietf.org/arch/browse/opsawg/.
+   Discussion of this document takes place on the Network Modeling
+   (NETMOD) Working Group Working Group mailing list (netmod@ietf.org),
+   which is archived at https://mailarchive.ietf.org/arch/browse/
+   netmod/.
 
    Source for this draft and an issue tracker can be found at
    https://github.com/netmod-wg/schedule-yang.
