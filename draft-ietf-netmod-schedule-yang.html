@@ -2258,7 +2258,7 @@ can be mapped to YANG parameters.<a href="#section-5-2" class="pilcrow">¶</a></
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">schedTriggers</td>
-            <td class="text-left" rowspan="1" colspan="1">failure-counter + counter</td>
+            <td class="text-left" rowspan="1" colspan="1">counter/failure-counter</td>
           </tr>
         </tbody>
       </table>
@@ -2273,8 +2273,6 @@ can be mapped to YANG parameters.<a href="#section-5-2" class="pilcrow">¶</a></
 <p id="section-6-1">This module imports types defined in <span>[<a href="#RFC6991" class="cite xref">RFC6991</a>]</span> and <span>[<a href="#RFC7317" class="cite xref">RFC7317</a>]</span>.<a href="#section-6-1" class="pilcrow">¶</a></p>
 <div class="breakable sourcecode" id="section-6-2">
 <pre>&lt;CODE BEGINS&gt; file "ietf-schedule@2024-04-16.yang"
-
-=============== NOTE: '\' line wrapping per RFC 8792 ================
 
 module ietf-schedule {
   yang-version 1.1;
@@ -3034,10 +3032,9 @@ module ietf-schedule {
       type yang:counter32;
       config false;
       description
-        "The number of occurrences while invoking the scheduled \
-                                                               action
-         successfully. The count wraps around when it reaches the
-         maximum value.";
+        "The number of occurrences while invoking the scheduled
+         action successfully. The count wraps around when it reaches
+         the maximum value.";
     }
     leaf last-occurrence {
       when "derived-from-or-self(../schedule-type, "
