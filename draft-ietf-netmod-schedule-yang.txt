@@ -5,11 +5,11 @@
 netmod                                                        Q. Ma, Ed.
 Internet-Draft                                                     Q. Wu
 Intended status: Standards Track                                  Huawei
-Expires: 10 January 2025                               M. Boucadair, Ed.
+Expires: 12 January 2025                               M. Boucadair, Ed.
                                                                   Orange
                                                                  D. King
                                                     Lancaster University
-                                                             9 July 2024
+                                                            11 July 2024
 
 
                 A Common YANG Data Model for Scheduling
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 January 2025.
+   This Internet-Draft will expire on 12 January 2025.
 
 Copyright Notice
 
@@ -939,7 +939,7 @@ Table of Contents
                +------------------+------------------------+
                | schedStorageType | Not Supported          |
                +------------------+------------------------+
-               | schedValue       | Not Supported          |
+               | schedTriggers    | counter                |
                +------------------+------------------------+
 
                          Table 1: YANG/MIB Mapping
