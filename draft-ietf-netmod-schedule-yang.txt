@@ -127,7 +127,7 @@ Table of Contents
 
    This document does not make any assumption about the nature of
    actions that are triggered by the schedules.  Detection and
-   resolution of any schedule conflicts is beyond the scope of this
+   resolution of any schedule conflicts are beyond the scope of this
    document.
 
    Section 5 discusses relationship with the managed objects defined in
@@ -2549,8 +2549,9 @@ Acknowledgments
    desire from the OPSAWG to see this model be separately defined for
    wide use in scheduling context.
 
-   Thanks to Adrian Farrel, Wei Pan, Tianran Zhou, Joe Clarke, and Dhruv
-   Dhody for their valuable comments and inputs to this work.
+   Thanks to Adrian Farrel, Wei Pan, Tianran Zhou, Joe Clarke, Steve
+   Baillargeon, and Dhruv Dhody for their valuable comments and inputs
+   to this work.
 
    Many thanks to the authors of [I-D.ietf-tvr-schedule-yang],
    [I-D.contreras-opsawg-scheduling-oam-tests], and
