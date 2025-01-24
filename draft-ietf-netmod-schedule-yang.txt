@@ -173,6 +173,10 @@ Table of Contents
 
    The document makes use of the following terms:
 
+   Recurrence Rule:  Refers to a rule or repeating pattern for recurring
+      events.  (See also Section 3.3.10 and Section 3.8.5.3 of [RFC5545]
+      for a comprehensive icalendar recurrence rule specification.)
+
    Frequency:  Characterizes the type of a recurrence rule.  Values are
       taken from "FREQ" rule in Section 3.3.10 of [RFC5545].
 
@@ -1348,7 +1352,8 @@ Table of Contents
        choice period-type {
          description
            "Indicates the type of the time period. Two types are
-            supported.";
+            supported. If no choice is indicated, the period is
+            considered to last forever.";
          case explicit {
            description
              "A period of time is identified by its start and its end.
@@ -1417,7 +1422,10 @@ Table of Contents
           UTC. This grouping is intended to be machine-friendly.";
        container recurrence-first {
          description
-           "Specifies the first instance of the recurrence.";
+           "Specifies the first instance of the recurrence. If
+            unspecified, the recurrence is considered to start from the
+            date and time when the recurrence pattern is first
+            satisfied.";
          leaf start-time-utc {
            type yang:date-and-time;
            description
@@ -1474,7 +1482,10 @@ Table of Contents
           is intended to be human-friendly.";
        container recurrence-first {
          description
-           "Specifies the first instance of the recurrence.";
+           "Specifies the first instance of the recurrence. If
+            unspecified, the recurrence is considered to start from the
+            date and time when the recurrence pattern is first
+            satisfied.";
          leaf start-time {
            type yang:date-and-time;
            description
