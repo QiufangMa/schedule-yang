@@ -5,11 +5,11 @@
 netmod                                                        Q. Ma, Ed.
 Internet-Draft                                                     Q. Wu
 Intended status: Standards Track                                  Huawei
-Expires: 13 April 2025                                 M. Boucadair, Ed.
+Expires: 28 July 2025                                  M. Boucadair, Ed.
                                                                   Orange
                                                                  D. King
                                                     Lancaster University
-                                                         10 October 2024
+                                                         24 January 2025
 
 
                 A Common YANG Data Model for Scheduling
@@ -50,11 +50,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 April 2025.
+   This Internet-Draft will expire on 28 July 2025.
 
 Copyright Notice
 
-   Copyright (c) 2024 IETF Trust and the persons identified as the
+   Copyright (c) 2025 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -1915,11 +1915,11 @@ Table of Contents
 
    [I-D.contreras-opsawg-scheduling-oam-tests]
               Contreras, L. M. and V. Lopez, "A YANG Data Model for
-              Network Diagnosis by Scheduling Sequences of OAM Tests",
+              Network Diagnosis using Scheduled Sequences of OAM Tests",
               Work in Progress, Internet-Draft, draft-contreras-opsawg-
-              scheduling-oam-tests-02, 8 July 2024,
+              scheduling-oam-tests-04, 18 November 2024,
               <https://datatracker.ietf.org/doc/html/draft-contreras-
-              opsawg-scheduling-oam-tests-02>.
+              opsawg-scheduling-oam-tests-04>.
 
    [I-D.ietf-netmod-eca-policy]
               Wu, Q., Bryskin, I., Birkholz, H., Liu, X., and B. Claise,
@@ -1932,31 +1932,25 @@ Table of Contents
               Bierman, A., Boucadair, M., and Q. Wu, "Guidelines for
               Authors and Reviewers of Documents Containing YANG Data
               Models", Work in Progress, Internet-Draft, draft-ietf-
-              netmod-rfc8407bis-17, 27 September 2024,
+              netmod-rfc8407bis-22, 14 January 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
-              rfc8407bis-17>.
+              rfc8407bis-22>.
 
    [I-D.ietf-opsawg-ucl-acl]
               Ma, Q., Wu, Q., Boucadair, M., and D. King, "A YANG Data
               Model and RADIUS Extension for Policy-based Network Access
               Control", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-ucl-acl-05, 25 June 2024,
+              opsawg-ucl-acl-06, 11 October 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ucl-acl-05>.
+              ucl-acl-06>.
 
    [I-D.ietf-tvr-schedule-yang]
               Qu, Y., Lindem, A., Kinzie, E., Fedyk, D., and M.
               Blanchet, "YANG Data Model for Scheduled Attributes", Work
               in Progress, Internet-Draft, draft-ietf-tvr-schedule-yang-
-              02, 22 July 2024, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-tvr-schedule-yang-02>.
-
-   [I-D.ietf-tvr-use-cases]
-              Birrane, E. J., Kuhn, N., Qu, Y., Taylor, R., and L.
-              Zhang, "TVR (Time-Variant Routing) Use Cases", Work in
-              Progress, Internet-Draft, draft-ietf-tvr-use-cases-09, 29
-              February 2024, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-tvr-use-cases-09>.
+              03, 20 October 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-tvr-
+              schedule-yang-03>.
 
    [I-D.liu-netmod-yang-schedule]
               Liu, X., Bryskin, I., Beeram, V. P., Saad, T., Shah, H.
@@ -1982,6 +1976,11 @@ Table of Contents
               for Scheduled Use of Resources", RFC 8413,
               DOI 10.17487/RFC8413, July 2018,
               <https://www.rfc-editor.org/rfc/rfc8413>.
+
+   [RFC9657]  Birrane, III, E., Kuhn, N., Qu, Y., Taylor, R., and L.
+              Zhang, "Time-Variant Routing (TVR) Use Cases", RFC 9657,
+              DOI 10.17487/RFC9657, October 2024,
+              <https://www.rfc-editor.org/rfc/rfc9657>.
 
 Appendix A.  Examples of Format Representation
 
@@ -2119,25 +2118,27 @@ A.1.  The "generic-schedule-params" Grouping
      }
    }
 
-            Figure 11: Generic Parameters with "max-allowed-end
+     Figure 11: Generic Parameters with 'max-allowed-end' for Schedule
+                                 Validation
 
-To illustrate the difference between "max-allowed-end" and "validity" parameters,
-{{ex-00}} shows the example of a requested schedule that needs to start no earlier than
-08:00 AM, January 1, 2025 (Beijing time). Schedule requests that fail to meet the
-requirements are discarded with warning messages. The requested schedule may end
-after 8:00 PM, January 31, 2025, but any occurrences that are generated
-after that time would be considered as invalid.
+   To illustrate the difference between "max-allowed-end" and "validity"
+   parameters, Figure 12 shows the example of a requested schedule that
+   needs to start no earlier than 08:00 AM, January 1, 2025 (Paris
+   time).  Schedule requests that fail to meet the requirements are
+   discarded with warning messages.  The requested schedule may end
+   after 8:00 PM, January 31, 2025, but any occurrences that are
+   generated after that time would be considered as invalid.
 
    {
      "example-sch-usage-1:generic-schedule-params": {
-       "time-zone-identifier": "China/Beijing",
+       "time-zone-identifier": "France/Paris",
        "validity": "2025-01-31T20:00:00",
        "min-allowed-start": "2025-01-01T08:00:00",
        "discard-action": "ietf-schedule:warning"
      }
    }
 
-                Figure 12: Generic Parameters with "validity
+   Figure 12: Generic Parameters with 'validity' for Schedule Validation
 
 A.2.  The "period-of-time" Grouping
 
@@ -2543,10 +2544,10 @@ B.2.  Example: Schedule Network Properties to Change Based on Date and
       Time
 
    Network properties may change over a specific period of time or based
-   on a recurrence rule, e.g., [I-D.ietf-tvr-use-cases].  The following
-   example module which augments the "recurrence-utc-with-date-times"
-   grouping from "ietf-schedule" module shows how a scheduled based
-   attribute could be defined.
+   on a recurrence rule, e.g., [RFC9657].  The following example module
+   which augments the "recurrence-utc-with-date-times" grouping from
+   "ietf-schedule" module shows how a scheduled based attribute could be
+   defined.
 
    module example-scheduled-link-bandwidth {
      yang-version 1.1;
