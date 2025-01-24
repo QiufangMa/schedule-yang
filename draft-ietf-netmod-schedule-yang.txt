@@ -174,8 +174,8 @@ Table of Contents
    The document makes use of the following terms:
 
    Recurrence Rule:  Refers to a rule or repeating pattern for recurring
-      events.  (See also Section 3.8.5.3 of [RFC5545] for a
-      comprehensive icalendar recurrence rule specification.)
+      events.  See also Section 3.8.5.3 of [RFC5545] for a comprehensive
+      iCalendar recurrence rule specification.
 
    Frequency:  Characterizes the type of a recurrence rule.  Values are
       taken from "FREQ" rule in Section 3.3.10 of [RFC5545].
@@ -184,7 +184,7 @@ Table of Contents
       more are classified as recurrence with a frequency value of
       "secondly".
 
-   icalendar:  Refers to Internet Calendaring per [RFC5545].
+   iCalendar:  Refers to Internet Calendaring per [RFC5545].
 
    Interval:  Refers to an integer that specifies at which intervals a
       recurrence rule repeats.  Values are taken from "INTERVAL" rule in
@@ -1423,8 +1423,8 @@ Table of Contents
        container recurrence-first {
          description
            "Specifies the first instance of the recurrence. If
-            unspecified, the recurrence is considered to start from the
-            date and time when the recurrence pattern is first
+            unspecified, the recurrence is considered to start from
+            the date and time when the recurrence pattern is first
             satisfied.";
          leaf start-time-utc {
            type yang:date-and-time;
@@ -1483,8 +1483,8 @@ Table of Contents
        container recurrence-first {
          description
            "Specifies the first instance of the recurrence. If
-            unspecified, the recurrence is considered to start from the
-            date and time when the recurrence pattern is first
+            unspecified, the recurrence is considered to start from
+            the date and time when the recurrence pattern is first
             satisfied.";
          leaf start-time {
            type yang:date-and-time;
