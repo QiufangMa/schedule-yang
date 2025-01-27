@@ -1598,17 +1598,17 @@ module: ietf-schedule
 <p id="section-3.3.1-3">The "description" includes a description of the schedule. No constraint is imposed
    on the structure nor the use of this parameter.<a href="#section-3.3.1-3" class="pilcrow">¶</a></p>
 <p id="section-3.3.1-4">The "time-zone-identifier" parameter, if provided, specifies the
-   time zone reference of the date and time values with local time format.<a href="#section-3.3.1-4" class="pilcrow">¶</a></p>
+   time zone reference <span>[<a href="#RFC7317" class="cite xref">RFC7317</a>]</span> of the local date and time values.<a href="#section-3.3.1-4" class="pilcrow">¶</a></p>
 <p id="section-3.3.1-5">The "validity" parameter specifies the date and time after which a schedule
    will be considered as invalid. It determines the latest time that a schedule
-   can be executed by a system and takes precedence over similar attributes
+   can be started to execute by a system and takes precedence over similar attributes
    that are provided at the schedule instance itself.<a href="#section-3.3.1-5" class="pilcrow">¶</a></p>
 <p id="section-3.3.1-6">The "max/min-allowed-start" parameters specify the maximum/minimum scheduled
    start date and time, a requested schedule will be rejected if the first
-   occurrence of the schedule is later/earlier than the configured values.<a href="#section-3.3.1-6" class="pilcrow">¶</a></p>
+   occurrence of the schedule starts later/earlier than the configured values.<a href="#section-3.3.1-6" class="pilcrow">¶</a></p>
 <p id="section-3.3.1-7">The "max-allowed-end" parameter specifies the maximum allowed end time of
    the last occurrence. A requested schedule will be rejected if the end time
-   of last occurrence is later than the configured "max-allowed-end" value.<a href="#section-3.3.1-7" class="pilcrow">¶</a></p>
+   of last occurrence starts later than the configured "max-allowed-end" value.<a href="#section-3.3.1-7" class="pilcrow">¶</a></p>
 <p id="section-3.3.1-8">The "discard-action" parameter specifies the action if a requested schedule
    cannot be accepted for any reason and is discarded. Possible reasons include,
    but are not limited to, the requested schedule failing to satisfy the guards in this grouping,
@@ -1624,9 +1624,10 @@ module: ietf-schedule
 <a href="#section-3.3.2" class="section-number selfRef">3.3.2. </a><a href="#name-the-period-of-time-grouping" class="section-name selfRef">The "period-of-time" Grouping</a>
           </h4>
 <p id="section-3.3.2-1">The "period-of-time" grouping (<a href="#pt-tree" class="auto internal xref">Figure 3</a>) represents a time period using
-   either a start ("period-start") and end date and time ("period-end"), or a
-   start ("period-start") and a positive time duration ("duration"). For the first
-   format, the start of the period <span class="bcp14">MUST</span> be before the end of the period.<a href="#section-3.3.2-1" class="pilcrow">¶</a></p>
+   either a start date and time ("period-start") and end date and time ("period-end"), or a
+   start date and time ("period-start") and a positive time duration ("duration"). For the first
+   format, the start of the period <span class="bcp14">MUST</span> be before the end of the period. If neither an end date and time
+   nor a duration is indicated, the period is considered to last forever or as a one-shot schedule.<a href="#section-3.3.2-1" class="pilcrow">¶</a></p>
 <p id="section-3.3.2-2">The "period-description" includes a description of the period. No constraint is imposed
    on the structure nor the use of this parameter.<a href="#section-3.3.2-2" class="pilcrow">¶</a></p>
 <span id="name-period-of-time-grouping-tre"></span><div id="pt-tree">
