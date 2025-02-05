@@ -1324,7 +1324,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
       </h2>
 <p id="section-1-1">This document defines a common schedule YANG module ("ietf-schedule") that can
 be used in several scheduling contexts, e.g., (but not limited to)
-<span>[<a href="#I-D.ietf-opsawg-ucl-acl" class="cite xref">I-D.ietf-opsawg-ucl-acl</a>]</span>, <span>[<a href="#I-D.contreras-opsawg-scheduling-oam-tests" class="cite xref">I-D.contreras-opsawg-scheduling-oam-tests</a>]</span>,
+<span>[<a href="#I-D.ietf-opsawg-ucl-acl" class="cite xref">I-D.ietf-opsawg-ucl-acl</a>]</span>, <span>[<a href="#I-D.ietf-opsawg-scheduling-oam-tests" class="cite xref">I-D.ietf-opsawg-scheduling-oam-tests</a>]</span>,
 and <span>[<a href="#I-D.ietf-tvr-schedule-yang" class="cite xref">I-D.ietf-tvr-schedule-yang</a>]</span>. The module includes a set of reusable groupings which
 are designed to be applicable for scheduling purposes such as event, policy,
 services or resources based on date and time. It also defines groupings for validating
@@ -2584,7 +2584,7 @@ module ietf-schedule {
   identity silently-discard {
     base discard-action-type;
     description
-      "Indicates that an invalid schedule is silently
+      "Indicates that a schedule that is not valid is silently
        discarded.";
   }
 
@@ -2608,8 +2608,8 @@ module ietf-schedule {
     leaf validity {
       type yang:date-and-time;
       description
-        "Specifies the date and time after which a schedule will
-         be considered as invalid. This parameter takes precedence
+        "Specifies the date and time after which a schedule will not
+         be considered as valid. This parameter takes precedence
          over similar attributes that are provided at the schedule
          instance itself.";
     }
@@ -3263,10 +3263,6 @@ module ietf-schedule {
 <a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
-<dt id="I-D.contreras-opsawg-scheduling-oam-tests">[I-D.contreras-opsawg-scheduling-oam-tests]</dt>
-        <dd>
-<span class="refAuthor">Contreras, L. M.</span> and <span class="refAuthor">V. Lopez</span>, <span class="refTitle">"A YANG Data Model for Network Diagnosis using Scheduled Sequences of OAM Tests"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-contreras-opsawg-scheduling-oam-tests-04</span>, <time datetime="2024-11-18" class="refDate">18 November 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-contreras-opsawg-scheduling-oam-tests-04">https://datatracker.ietf.org/doc/html/draft-contreras-opsawg-scheduling-oam-tests-04</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="I-D.ietf-netmod-eca-policy">[I-D.ietf-netmod-eca-policy]</dt>
         <dd>
 <span class="refAuthor">Wu, Q.</span>, <span class="refAuthor">Bryskin, I.</span>, <span class="refAuthor">Birkholz, H.</span>, <span class="refAuthor">Liu, X.</span>, and <span class="refAuthor">B. Claise</span>, <span class="refTitle">"A YANG Data model for ECA Policy Management"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-netmod-eca-policy-01</span>, <time datetime="2021-02-19" class="refDate">19 February 2021</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-eca-policy-01">https://datatracker.ietf.org/doc/html/draft-ietf-netmod-eca-policy-01</a>&gt;</span>. </dd>
@@ -3274,6 +3270,10 @@ module ietf-schedule {
 <dt id="I-D.ietf-netmod-rfc8407bis">[I-D.ietf-netmod-rfc8407bis]</dt>
         <dd>
 <span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Boucadair, M.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"Guidelines for Authors and Reviewers of Documents Containing YANG Data Models"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-netmod-rfc8407bis-22</span>, <time datetime="2025-01-14" class="refDate">14 January 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-22">https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-22</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-opsawg-scheduling-oam-tests">[I-D.ietf-opsawg-scheduling-oam-tests]</dt>
+        <dd>
+<span class="refAuthor">Contreras, L. M.</span> and <span class="refAuthor">V. Lopez</span>, <span class="refTitle">"A YANG Data Model for Network Diagnosis using Scheduled Sequences of OAM Tests"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-scheduling-oam-tests-00</span>, <time datetime="2025-01-29" class="refDate">29 January 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-scheduling-oam-tests-00">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-scheduling-oam-tests-00</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-opsawg-ucl-acl">[I-D.ietf-opsawg-ucl-acl]</dt>
         <dd>
@@ -4269,7 +4269,7 @@ module example-sch-capacity-res {
    from the OPSAWG to see this model be separately defined for wide use in scheduling context.<a href="#appendix-D-1" class="pilcrow">¶</a></p>
 <p id="appendix-D-2">Thanks to Adrian Farrel, Wei Pan, Tianran Zhou, Joe Clarke, Steve Baillargeon, and Dhruv Dhody
    for their valuable comments and inputs to this work.<a href="#appendix-D-2" class="pilcrow">¶</a></p>
-<p id="appendix-D-3">Many thanks to the authors of <span>[<a href="#I-D.ietf-tvr-schedule-yang" class="cite xref">I-D.ietf-tvr-schedule-yang</a>]</span>, <span>[<a href="#I-D.contreras-opsawg-scheduling-oam-tests" class="cite xref">I-D.contreras-opsawg-scheduling-oam-tests</a>]</span>, and <span>[<a href="#I-D.ietf-netmod-eca-policy" class="cite xref">I-D.ietf-netmod-eca-policy</a>]</span>
+<p id="appendix-D-3">Many thanks to the authors of <span>[<a href="#I-D.ietf-tvr-schedule-yang" class="cite xref">I-D.ietf-tvr-schedule-yang</a>]</span>, <span>[<a href="#I-D.ietf-opsawg-scheduling-oam-tests" class="cite xref">I-D.ietf-opsawg-scheduling-oam-tests</a>]</span>, and <span>[<a href="#I-D.ietf-netmod-eca-policy" class="cite xref">I-D.ietf-netmod-eca-policy</a>]</span>
    for the constructive discussion during IETF#118.<a href="#appendix-D-3" class="pilcrow">¶</a></p>
 <p id="appendix-D-4">Other related efforts were explored in the past, e.g., <span>[<a href="#I-D.liu-netmod-yang-schedule" class="cite xref">I-D.liu-netmod-yang-schedule</a>]</span>.<a href="#appendix-D-4" class="pilcrow">¶</a></p>
 <p id="appendix-D-5">Thanks to Reshad Rahman for the great YANGDOCTORS review.<a href="#appendix-D-5" class="pilcrow">¶</a></p>

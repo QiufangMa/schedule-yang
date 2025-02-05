@@ -122,7 +122,7 @@ Table of Contents
    This document defines a common schedule YANG module ("ietf-schedule")
    that can be used in several scheduling contexts, e.g., (but not
    limited to) [I-D.ietf-opsawg-ucl-acl],
-   [I-D.contreras-opsawg-scheduling-oam-tests], and
+   [I-D.ietf-opsawg-scheduling-oam-tests], and
    [I-D.ietf-tvr-schedule-yang].  The module includes a set of reusable
    groupings which are designed to be applicable for scheduling purposes
    such as event, policy, services or resources based on date and time.
@@ -1264,7 +1264,7 @@ Table of Contents
      identity silently-discard {
        base discard-action-type;
        description
-         "Indicates that an invalid schedule is silently
+         "Indicates that a schedule that is not valid is silently
           discarded.";
      }
 
@@ -1288,8 +1288,8 @@ Table of Contents
        leaf validity {
          type yang:date-and-time;
          description
-           "Specifies the date and time after which a schedule will
-            be considered as invalid. This parameter takes precedence
+           "Specifies the date and time after which a schedule will not
+            be considered as valid. This parameter takes precedence
             over similar attributes that are provided at the schedule
             instance itself.";
        }
@@ -1916,14 +1916,6 @@ Table of Contents
 
 9.2.  Informative References
 
-   [I-D.contreras-opsawg-scheduling-oam-tests]
-              Contreras, L. M. and V. Lopez, "A YANG Data Model for
-              Network Diagnosis using Scheduled Sequences of OAM Tests",
-              Work in Progress, Internet-Draft, draft-contreras-opsawg-
-              scheduling-oam-tests-04, 18 November 2024,
-              <https://datatracker.ietf.org/doc/html/draft-contreras-
-              opsawg-scheduling-oam-tests-04>.
-
    [I-D.ietf-netmod-eca-policy]
               Wu, Q., Bryskin, I., Birkholz, H., Liu, X., and B. Claise,
               "A YANG Data model for ECA Policy Management", Work in
@@ -1938,6 +1930,14 @@ Table of Contents
               netmod-rfc8407bis-22, 14 January 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
               rfc8407bis-22>.
+
+   [I-D.ietf-opsawg-scheduling-oam-tests]
+              Contreras, L. M. and V. Lopez, "A YANG Data Model for
+              Network Diagnosis using Scheduled Sequences of OAM Tests",
+              Work in Progress, Internet-Draft, draft-ietf-opsawg-
+              scheduling-oam-tests-00, 29 January 2025,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
+              scheduling-oam-tests-00>.
 
    [I-D.ietf-opsawg-ucl-acl]
               Ma, Q., Wu, Q., Boucadair, M., and D. King, "A YANG Data
@@ -2788,7 +2788,7 @@ Acknowledgments
    to this work.
 
    Many thanks to the authors of [I-D.ietf-tvr-schedule-yang],
-   [I-D.contreras-opsawg-scheduling-oam-tests], and
+   [I-D.ietf-opsawg-scheduling-oam-tests], and
    [I-D.ietf-netmod-eca-policy] for the constructive discussion during
    IETF#118.
 
