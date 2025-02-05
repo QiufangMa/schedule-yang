@@ -5,11 +5,11 @@
 netmod                                                        Q. Ma, Ed.
 Internet-Draft                                                     Q. Wu
 Intended status: Standards Track                                  Huawei
-Expires: 31 July 2025                                  M. Boucadair, Ed.
+Expires: 9 August 2025                                 M. Boucadair, Ed.
                                                                   Orange
                                                                  D. King
                                                     Lancaster University
-                                                         27 January 2025
+                                                         5 February 2025
 
 
                 A Common YANG Data Model for Scheduling
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 31 July 2025.
+   This Internet-Draft will expire on 9 August 2025.
 
 Copyright Notice
 
