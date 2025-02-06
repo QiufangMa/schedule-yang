@@ -215,8 +215,7 @@ Table of Contents
 
    *  "icalendar-recurrence"
 
-   Refer to Sections Section 3.4 and Appendix B.1 for the use of these
-   features.
+   Refer to Sections 3.4 and B.1 for the use of these features.
 
 3.2.  Types and Identities
 
