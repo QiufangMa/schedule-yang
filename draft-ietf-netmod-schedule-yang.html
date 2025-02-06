@@ -1059,7 +1059,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Ma, et al.</td>
-<td class="center">Expires 9 August 2025</td>
+<td class="center">Expires 10 August 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1072,12 +1072,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-netmod-schedule-yang-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-02-05" class="published">5 February 2025</time>
+<time datetime="2025-02-06" class="published">6 February 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-08-09">9 August 2025</time></dd>
+<dd class="expires"><time datetime="2025-08-10">10 August 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1141,7 +1141,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 9 August 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 10 August 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1676,7 +1676,7 @@ module: ietf-schedule
 <a href="#name-recurrence-grouping-tree-st" class="selfRef">recurrence Grouping Tree Structure</a>
             </figcaption></figure>
 </div>
-<p id="section-3.3.3-3">The frequency parameter ("frequency") which is mandatory, identifies the type of recurrence rule. For example,
+<p id="section-3.3.3-3">The frequency parameter ("frequency"), which is mandatory, identifies the type of recurrence rule. For example,
   a "daily" frequency value specifies repeating events based on an interval of a day or more.<a href="#section-3.3.3-3" class="pilcrow">¶</a></p>
 <p id="section-3.3.3-4">Consistent with <span><a href="https://rfc-editor.org/rfc/rfc5545#section-3.3.10" class="relref">Section 3.3.10</a> of [<a href="#RFC5545" class="cite xref">RFC5545</a>]</span>, the interval ("interval") represents at which interval the recurrence rule repeats. For example,
   within a daily recurrence rule, an interval value of "8" means every eight days.
@@ -1741,7 +1741,7 @@ module: ietf-schedule
    immediate completion or hard to compute an exact duration.<a href="#section-3.3.4-4" class="pilcrow">¶</a></p>
 <p id="section-3.3.4-5">Note that the "interval" and "duration" cover two distinct properties of a schedule event.
 The interval specifies when a schedule will occur, combined with the frequency parameter; while the duration indicates how long
-an occurrence will last. This document allows the interval between occurrences is shorter than the duration of each occurrence, e.g., a recurring event is scheduled to start every day for a duration of 2 days.<a href="#section-3.3.4-5" class="pilcrow">¶</a></p>
+an occurrence will last. This document allows the interval between occurrences to be shorter than the duration of each occurrence (e.g., a recurring event is scheduled to start every day for a duration of 2 days).<a href="#section-3.3.4-5" class="pilcrow">¶</a></p>
 <p id="section-3.3.4-6">The repetition can be scoped by a specified end time or by a count of occurrences,
   indicated by the "recurrence-end" choice. The value of the "count" node <span class="bcp14">MUST</span> be greater than 1, the "start-time-utc" value always counts
   as the first occurrence.<a href="#section-3.3.4-6" class="pilcrow">¶</a></p>
@@ -2172,7 +2172,7 @@ second occurs.<a href="#section-4-2.3.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-4-2.4">
           <p id="section-4-2.4.1">Schedules received with a starting time in the past with respect to
-current time <span class="bcp14">SHOULD</span> be ignored. Some implementation <span class="bcp14">MAY</span> omit the past occurrences and
+current time <span class="bcp14">SHOULD</span> be ignored. When a local policy is provided, an implementation <span class="bcp14">MAY</span> omit the past occurrences and
 start immediately (e.g., for a period-based schedule) or starts from the
 date and time when the recurrence pattern is first satisfied from the current time (e.g., for a recurrence-based schedule).<a href="#section-4-2.4.1" class="pilcrow">¶</a></p>
 </li>
@@ -3138,29 +3138,43 @@ module ietf-schedule {
       <h2 id="name-security-considerations">
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-7-1">This section is modeled after the template described in Section 3.7 of <span>[<a href="#I-D.ietf-netmod-rfc8407bis" class="cite xref">I-D.ietf-netmod-rfc8407bis</a>]</span>.<a href="#section-7-1" class="pilcrow">¶</a></p>
-<p id="section-7-2">The "ietf-schedule" YANG module specified in this document defines schema for data
+<p id="section-7-1">The "ietf-schedule" YANG module specified in this document defines schema for data
    that is designed to be accessed via YANG-based management protocols, such
    as NETCONF <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span> or RESTCONF <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span>.  These protocols have to use
    a secure transport layer (e.g., SSH <span>[<a href="#RFC4252" class="cite xref">RFC4252</a>]</span>, TLS <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>, and QUIC <span>[<a href="#RFC9000" class="cite xref">RFC9000</a>]</span>)
-   and have to use mutual authentication.<a href="#section-7-2" class="pilcrow">¶</a></p>
-<p id="section-7-3">The Network Configuration Access Control Model (NACM) <span>[<a href="#RFC8341" class="cite xref">RFC8341</a>]</span>
+   and have to use mutual authentication.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-7-2">The Network Configuration Access Control Model (NACM) <span>[<a href="#RFC8341" class="cite xref">RFC8341</a>]</span>
    provides the means to restrict access for particular NETCONF or
    RESTCONF users to a preconfigured subset of all available NETCONF or
-   RESTCONF protocol operations and content.<a href="#section-7-3" class="pilcrow">¶</a></p>
-<p id="section-7-4">The "ietf-schedule" module defines a set of types and
+   RESTCONF protocol operations and content.<a href="#section-7-2" class="pilcrow">¶</a></p>
+<p id="section-7-3">The "ietf-schedule" module defines a set of types and
    groupings.  These nodes are intended to be reused by other YANG
    modules.  The module by itself does not expose any data nodes that
    are writable, data nodes that contain read-only state, or RPCs.  As
-   such, there are no additional security issues related to the "ietf-
-   schedule" module that need to be considered.<a href="#section-7-4" class="pilcrow">¶</a></p>
-<p id="section-7-5">Modules that use the groupings that are defined in this document
-   should identify the corresponding security considerations. For
-   example, reusing some of these groupings will expose privacy-related
-   information (e.g., 'node-example').<a href="#section-7-5" class="pilcrow">¶</a></p>
-<p id="section-7-6">Care must be taken when defining recurrences occurring very often and
-   frequent that can be an additional source of attacks by keeping the system
-   permanently busy with the management of scheduling.<a href="#section-7-6" class="pilcrow">¶</a></p>
+   such, there are no additional security issues related to the "ietf-schedule"
+   module that need to be considered.<a href="#section-7-3" class="pilcrow">¶</a></p>
+<p id="section-7-4">Modules that use the groupings that are defined in this document
+   should identify the corresponding security considerations, e.g.,:<a href="#section-7-4" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-7-5.1">
+          <p id="section-7-5.1.1">Scheduling depends on reliable and accurate time synchronization. Inaccurate date
+and time setting can lead to scheduling events being triggered at incorrect
+intervals, potentially causing system failures or security vulnerabilities.<a href="#section-7-5.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-7-5.2">
+          <p id="section-7-5.2.1">Recurring events may conceal abnormal behavior or security threats, which
+may be drowned out by normal events, especially when they are triggered frequently.<a href="#section-7-5.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-7-5.3">
+          <p id="section-7-5.3.1">The absence of detailed logs and audit records of each occurrence trigger time
+and action results, and so on, may make security incidents difficient to trace.<a href="#section-7-5.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-7-5.4">
+          <p id="section-7-5.4.1">Care must be taken when defining recurrences occurring very often and
+frequent that can be an additional source of attacks by keeping the system
+permanently busy with the management of scheduling.<a href="#section-7-5.4.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
 </section>
 </div>
 <div id="iana-considerations">
