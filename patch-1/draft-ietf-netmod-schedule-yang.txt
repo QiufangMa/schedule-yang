@@ -282,9 +282,9 @@ Table of Contents
        ...
      grouping recurrence-with-time-zone:
        ...
-     grouping recurrence-utc-with-date-times:
+     grouping recurrence-utc-with-periods:
        ...
-     grouping recurrence-time-zone-with-date-times:
+     grouping recurrence-time-zone-with-periods:
        ...
      grouping icalendar-recurrence:
        ...
@@ -324,9 +324,9 @@ Table of Contents
        ...
      grouping recurrence-with-time-zone:
        ...
-     grouping recurrence-utc-with-date-times:
+     grouping recurrence-utc-with-periods:
        ...
-     grouping recurrence-time-zone-with-date-times:
+     grouping recurrence-time-zone-with-periods:
        ...
      grouping icalendar-recurrence:
        ...
@@ -397,9 +397,9 @@ Table of Contents
        ...
      grouping recurrence-with-time-zone:
        ...
-     grouping recurrence-utc-with-date-times:
+     grouping recurrence-utc-with-periods:
        ...
-     grouping recurrence-time-zone-with-date-times:
+     grouping recurrence-time-zone-with-periods:
        ...
      grouping icalendar-recurrence:
        ...
@@ -429,9 +429,9 @@ Table of Contents
        ...
      grouping recurrence-with-time-zone:
        ...
-     grouping recurrence-utc-with-date-times:
+     grouping recurrence-utc-with-periods:
        ...
-     grouping recurrence-time-zone-with-date-times:
+     grouping recurrence-time-zone-with-periods:
        ...
      grouping icalendar-recurrence:
        ...
@@ -488,9 +488,9 @@ Table of Contents
        +-- interval?                 uint32
      grouping recurrence-with-time-zone:
        ...
-     grouping recurrence-utc-with-date-times:
+     grouping recurrence-utc-with-periods:
        ...
-     grouping recurrence-time-zone-with-date-times:
+     grouping recurrence-time-zone-with-periods:
        ...
      grouping icalendar-recurrence:
        ...
@@ -537,9 +537,9 @@ Table of Contents
        ...
      grouping recurrence-with-time-zone:
        +-- recurrence-first
-       |  +-- start-time?             yang:date-and-time
-       |  +-- duration?               duration
-       |  +-- time-zone-identifier?   sys:timezone-name
+       |  +-- start-time?   yang:date-and-time
+       |  +-- duration?     duration
+       +-- time-zone-identifier?     sys:timezone-name
        +-- (recurrence-end)?
        |  +--:(until)
        |  |  +-- until?              yang:date-and-time
@@ -548,9 +548,9 @@ Table of Contents
        +-- recurrence-description?   string
        +-- frequency                 identityref
        +-- interval?                 uint32
-     grouping recurrence-utc-with-date-times:
+     grouping recurrence-utc-with-periods:
        ...
-     grouping recurrence-time-zone-with-date-times:
+     grouping recurrence-time-zone-with-periods:
        ...
      grouping icalendar-recurrence:
        ...
@@ -595,7 +595,7 @@ Table of Contents
        ...
      grouping recurrence-with-time-zone:
        ...
-     grouping recurrence-utc-with-date-times:
+     grouping recurrence-utc-with-periods:
        +-- recurrence-first
        |  +-- start-time-utc?   yang:date-and-time
        |  +-- duration?         uint32
@@ -608,9 +608,9 @@ Table of Contents
        +-- frequency                 identityref
        +-- interval?                 uint32
        +-- period-timeticks* [period-start]
-          +-- period-start    yang:timeticks
+          +-- period-start?   yang:timeticks
           +-- period-end?     yang:timeticks
-     grouping recurrence-time-zone-with-date-times:
+     grouping recurrence-time-zone-with-periods:
        ...
      grouping icalendar-recurrence:
        ...
@@ -647,14 +647,14 @@ Table of Contents
        ...
      grouping recurrence-with-time-zone:
        ...
-     grouping recurrence-utc-with-date-times:
+     grouping recurrence-utc-with-periods:
        ...
-     grouping recurrence-time-zone-with-date-times:
+     grouping recurrence-time-zone-with-periods:
        +-- recurrence-first
-       |  +-- start-time?             yang:date-and-time
-       |  +-- duration?               duration
-       |  +-- time-zone-identifier?   sys:timezone-name
-       +-- (recurrence-bound)?
+       |  +-- start-time?   yang:date-and-time
+       |  +-- duration?     duration
+       +-- time-zone-identifier?     sys:timezone-name
+       +-- (recurrence-end)?
        |  +--:(until)
        |  |  +-- until?              yang:date-and-time
        |  +--:(count)
@@ -706,15 +706,15 @@ Table of Contents
        ...
      grouping recurrence-with-time-zone:
        ...
-     grouping recurrence-utc-with-date-times:
+     grouping recurrence-utc-with-periods:
        ...
-     grouping recurrence-time-zone-with-date-times:
+     grouping recurrence-time-zone-with-periods:
        ...
      grouping icalendar-recurrence:
        +-- recurrence-first
-       |  +-- start-time?             yang:date-and-time
-       |  +-- duration?               duration
-       |  +-- time-zone-identifier?   sys:timezone-name
+       |  +-- start-time?   yang:date-and-time
+       |  +-- duration?     duration
+       +-- time-zone-identifier?     sys:timezone-name
        +-- (recurrence-end)?
        |  +--:(until)
        |  |  +-- until?              yang:date-and-time
@@ -737,7 +737,7 @@ Table of Contents
        +-- byhour*                   uint32
        +-- byday* [weekday]
        |  +-- direction*   int32
-       |  +-- weekday      schedule:weekday
+       |  +-- weekday?     schedule:weekday
        +-- bymonthday*               int32
        +-- byyearday*                int32
        +-- byyearweek*               int32
@@ -814,9 +814,9 @@ Table of Contents
        ...
      grouping recurrence-with-time-zone:
        ...
-     grouping recurrence-utc-with-date-times:
+     grouping recurrence-utc-with-periods:
        ...
-     grouping recurrence-time-zone-with-date-times:
+     grouping recurrence-time-zone-with-periods:
        ...
      grouping icalendar-recurrence:
        ...
@@ -1500,14 +1500,14 @@ Table of Contents
               applies to all the other instances in the recurrence
               set.";
          }
-         leaf time-zone-identifier {
-           type sys:timezone-name;
-           description
-             "Indicates the identifier for the time zone in a time
-              zone database. This parameter MUST be specified if
-              'start-time' or 'until' value is neither reported in
-              the format of UTC nor time zone offset to UTC.";
-         }
+       }
+       leaf time-zone-identifier {
+         type sys:timezone-name;
+         description
+           "Indicates the identifier for the time zone in a time
+            zone database. This parameter MUST be specified if
+            'start-time' or 'until' value is neither reported in
+            the format of UTC nor time zone offset to UTC.";
        }
        choice recurrence-end {
          description
@@ -1542,7 +1542,7 @@ Table of Contents
        uses recurrence-basic;
      }
 
-     grouping recurrence-utc-with-date-times {
+     grouping recurrence-utc-with-periods {
        description
          "This grouping defines an aggregate set of repeating
           occurrences with UTC time format. The recurrence instances
@@ -1586,7 +1586,7 @@ Table of Contents
        }
      }
 
-     grouping recurrence-time-zone-with-date-times {
+     grouping recurrence-time-zone-with-periods {
        description
          "This grouping defines an aggregate set of repeating
           occurrences with local time format and time zone specified.
@@ -1608,7 +1608,7 @@ Table of Contents
        reference
          "RFC 5545: Internet Calendaring and Scheduling Core Object
                     Specification (iCalendar), Section 3.8.5";
-       uses recurrence-time-zone-with-date-times;
+       uses recurrence-time-zone-with-periods;
        leaf-list bysecond {
          type uint32 {
            range "0..60";
