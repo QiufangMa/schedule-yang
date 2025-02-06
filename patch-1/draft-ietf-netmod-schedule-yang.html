@@ -1875,7 +1875,7 @@ module: ietf-schedule
     +-- frequency                 identityref
     +-- interval?                 uint32
     +-- period-timeticks* [period-start]
-       +-- period-start?   yang:timeticks
+       +-- period-start    yang:timeticks
        +-- period-end?     yang:timeticks
   grouping recurrence-time-zone-with-periods:
     ...
@@ -2021,7 +2021,7 @@ module: ietf-schedule
     +-- byhour*                   uint32
     +-- byday* [weekday]
     |  +-- direction*   int32
-    |  +-- weekday?     schedule:weekday
+    |  +-- weekday      schedule:weekday
     +-- bymonthday*               int32
     +-- byyearday*                int32
     +-- byyearweek*               int32
