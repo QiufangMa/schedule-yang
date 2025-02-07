@@ -1594,9 +1594,9 @@ module: ietf-schedule
 <p id="section-3.3.2-1">The "period-of-time" grouping (<a href="#pt-tree" class="auto internal xref">Figure 2</a>) represents a time period using
    either a start date and time ("period-start") and end date and time ("period-end"), or a
    start date and time ("period-start") and a non-negative time duration ("duration"). For the first
-   format, the start of the period <span class="bcp14">MUST</span> be no later the end of the period. If neither an end date and time
-   nor a duration is indicated, the period is considered to last forever or as a one-shot schedule.
-   If the duration value is 0 or the end time is the same as the start time, the period
+   format, the start of the period <span class="bcp14">MUST</span> be no later the end of the period. If neither an end date and time ("period-end")
+   nor a duration ("duration") is indicated, the period is considered to last forever or as a one-shot schedule.
+   If the duration ("duration") value is 0 or the end time ("period-end") is the same as the start time ("period-start"), the period
    is also considered as a one-shot schedule.<a href="#section-3.3.2-1" class="pilcrow">¶</a></p>
 <p id="section-3.3.2-2">The "time-zone-identifier" parameter indicates the identifier for the
    time zone. This parameter <span class="bcp14">MUST</span> be specified if either the "period-start" or "period-end"
