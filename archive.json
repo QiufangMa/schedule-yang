@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-06T01:44:55.047985+00:00",
+  "timestamp": "2025-02-09T01:48:47.365400+00:00",
   "repo": "QiufangMa/schedule-yang",
   "labels": [
     {
@@ -172,6 +172,34 @@
       "mergedBy": "QiufangMa",
       "mergeCommit": {
         "oid": "6f9fa23dde4981a21ee718387dbdc221d9c40447"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 4,
+      "id": "PR_kwDOLv0NPc6KYywX",
+      "title": "sync up",
+      "url": "https://github.com/QiufangMa/schedule-yang/pull/4",
+      "state": "MERGED",
+      "author": "QiufangMa",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-02-07T08:39:56Z",
+      "updatedAt": "2025-02-07T08:40:31Z",
+      "baseRepository": "QiufangMa/schedule-yang",
+      "baseRefName": "main",
+      "baseRefOid": "d7ff1fd2a9feb935a4c34be7f368148451265f43",
+      "headRepository": "netmod-wg/schedule-yang",
+      "headRefName": "main",
+      "headRefOid": "a61f1e4b0c1ddaabb8104c8b3d0acfc4140bcf82",
+      "closedAt": "2025-02-07T08:40:31Z",
+      "mergedAt": "2025-02-07T08:40:31Z",
+      "mergedBy": "QiufangMa",
+      "mergeCommit": {
+        "oid": "3fd33f84f1e24571f7bc3af2c4059fa0ca274c65"
       },
       "comments": [],
       "reviews": []
