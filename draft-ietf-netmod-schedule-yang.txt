@@ -84,7 +84,7 @@ Table of Contents
        3.3.6.  The "recurrence-utc-with-periods" Grouping
        3.3.7.  The "recurrence-time-zone-with-periods" Grouping
        3.3.8.  The "icalendar-recurrence" Grouping
-       3.3.9.  The "schedule-status" and "schedule-status-with-id"
+       3.3.9.  The "schedule-status" and "schedule-status-with-name"
                Groupings
      3.4.  Features Use and Augmentations
    4.  Some Usage Restrictions
@@ -225,14 +225,14 @@ Table of Contents
    *  "schedule-type": Indicates the type of a schedule.  The following
       types are defined so far:
 
-      -  one-shot: The schedule will trigger an action with the duration
-         being specified as 0/end time being specified the same as start
-         time, and then the schedule will disable itself (Section 3.3 of
-         [RFC3231]).
+      -  one-shot: The schedule will trigger an action that has either
+         the duration specified as 0 or the end time specified the same
+         as start time, and then the schedule will disable itself
+         (Section 3.3 of [RFC3231]).
 
       -  period: The schedule is a period-based schedule consisting
-         either a start and end or a start and positive duration of
-         time.  If neither an end nor a duration is indicated, the
+         either (1) a start and end or (2) a start and positive duration
+         of time.  If neither an end nor a duration is indicated, the
          period is considered to last forever.
 
       -  recurrence: This type is used for a recurrence-based schedule.
@@ -274,7 +274,7 @@ Table of Contents
 
    *  "icalendar-recurrence" (Section 3.3.8)
 
-   *  "schedule-status" and "schedule-status-with-id" (Section 3.3.9)
+   *  "schedule-status" and "schedule-status-with-name" (Section 3.3.9)
 
    Examples are provided in Appendix A.
 
@@ -653,13 +653,13 @@ Table of Contents
    recurrence rule and date-times, and then excluding any start date and
    time values specified by "exception-dates" parameter.
 
-3.3.9.  The "schedule-status" and "schedule-status-with-id" Groupings
+3.3.9.  The "schedule-status" and "schedule-status-with-name" Groupings
 
-   The "schedule-status" and "schedule-status-with-id" groupings
+   The "schedule-status" and "schedule-status-with-name" groupings
    (Figure 9) define common parameters for scheduling management/status
-   exposure.  The "schedule-status-with-id" grouping has the same
+   exposure.  The "schedule-status-with-name" grouping has the same
    structure as "schedule-status" but with an additional parameter to
-   identify a schedule "schedule-id".  Both structures are defined in
+   identify a schedule "schedule-name".  Both structures are defined in
    the module to allow for better modularity and flexibility.
 
      grouping schedule-status:
@@ -673,8 +673,8 @@ Table of Contents
        +--ro upcoming-occurrence?      yang:date-and-time
        +--ro last-failed-occurrence?   yang:date-and-time
        +--ro failure-counter?          yang:counter32
-     grouping schedule-status-with-id:
-       +-- schedule-id?              string
+     grouping schedule-status-with-name:
+       +-- schedule-name?            string
        +-- state?                    identityref
        +-- version?                  uint16
        +-- schedule-type?            identityref
@@ -1659,7 +1659,7 @@ Table of Contents
        description
          "This grouping defines common properties of scheduling
           status.";
-       leaf schedule-id {
+       leaf schedule-name {
          type string;
          description
            "The schedule identifier that uniquely identifies a
@@ -1996,8 +1996,8 @@ Appendix A.  Examples of Scheduling Format Representation
      }
    }
 
-   For each example below, only the message body is provided with JSON
-   used for encoding per the guidance in [RFC7951].
+   For each example, only the message body is provided with JSON used
+   for encoding per the guidance in [RFC7951].
 
 A.1.  The "generic-schedule-params" Grouping
 
