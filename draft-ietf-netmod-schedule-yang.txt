@@ -5,11 +5,11 @@
 netmod                                                        Q. Ma, Ed.
 Internet-Draft                                                     Q. Wu
 Intended status: Standards Track                                  Huawei
-Expires: 13 September 2025                             M. Boucadair, Ed.
+Expires: 20 November 2025                              M. Boucadair, Ed.
                                                                   Orange
                                                                  D. King
                                                     Lancaster University
-                                                           12 March 2025
+                                                             19 May 2025
 
 
                 A Common YANG Data Model for Scheduling
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 September 2025.
+   This Internet-Draft will expire on 20 November 2025.
 
 Copyright Notice
 
@@ -160,7 +160,7 @@ Table of Contents
 
    *  XXXX --> the assigned RFC number for this draft
 
-   *  2025-01-27 --> the actual date of the publication of this document
+   *  2025-03-17 --> the actual date of the publication of this document
 
 2.  Conventions and Definitions
 
@@ -999,7 +999,7 @@ Table of Contents
 
    This module imports types defined in [RFC6991] and [RFC7317].
 
-   <CODE BEGINS> file "ietf-schedule@2025-01-27.yang"
+   <CODE BEGINS> file "ietf-schedule@2025-03-17.yang"
    module ietf-schedule {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-schedule";
@@ -1056,7 +1056,7 @@ Table of Contents
         described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
         they appear in all capitals, as shown here.";
 
-     revision 2025-01-27 {
+     revision 2025-03-17 {
        description
          "Initial revision.";
        reference
@@ -1966,9 +1966,9 @@ Table of Contents
               Bierman, A., Boucadair, M., and Q. Wu, "Guidelines for
               Authors and Reviewers of Documents Containing YANG Data
               Models", Work in Progress, Internet-Draft, draft-ietf-
-              netmod-rfc8407bis-22, 14 January 2025,
+              netmod-rfc8407bis-25, 5 May 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
-              rfc8407bis-22>.
+              rfc8407bis-25>.
 
    [I-D.ietf-opsawg-scheduling-oam-tests]
               Contreras, L. M. and V. Lopez, "A YANG Data Model for
@@ -1982,17 +1982,16 @@ Table of Contents
               Ma, Q., Wu, Q., Boucadair, M., and D. King, "A YANG Data
               Model and RADIUS Extension for Policy-based Network Access
               Control", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-ucl-acl-06, 11 October 2024,
+              opsawg-ucl-acl-07, 20 March 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ucl-acl-06>.
+              ucl-acl-07>.
 
    [I-D.ietf-tvr-schedule-yang]
               Qu, Y., Lindem, A., Kinzie, E., Fedyk, D., and M.
               Blanchet, "YANG Data Model for Scheduled Attributes", Work
               in Progress, Internet-Draft, draft-ietf-tvr-schedule-yang-
-              03, 20 October 2024,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-tvr-
-              schedule-yang-03>.
+              04, 22 April 2025, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-tvr-schedule-yang-04>.
 
    [I-D.liu-netmod-yang-schedule]
               Liu, X., Bryskin, I., Beeram, V. P., Saad, T., Shah, H.
