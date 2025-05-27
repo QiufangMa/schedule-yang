@@ -1635,7 +1635,7 @@ a requested schedule cannot be accepted for any reason and is discarded.<a href=
   within a "daily" recurrence rule, an interval value of "8" means every eight days.<a href="#section-3.3.3-4" class="pilcrow">¶</a></p>
 <p id="section-3.3.3-5">Note that per <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-25#section-4.13" class="relref">Section 4.13</a> of [<a href="#I-D.ietf-netmod-rfc8407bis" class="cite xref">I-D.ietf-netmod-rfc8407bis</a>]</span>, neither a "default"
   nor a "mandatory" substatement is defined here for both "frequency" and "interval"
-  parameters because there are cases (e.g., profiling) where the use of them is problematic.
+  parameters because there are cases (e.g., profiling) where using these statements is problematic.
   YANG modules using this grouping <span class="bcp14">SHOULD</span> refine these two nodes with either a
   "mandatory" or a "default" statement, if they always need to be configured or have default values.
   This <span class="bcp14">MAY</span> be ignored in cases such as when this grouping is used by another grouping.<a href="#section-3.3.3-5" class="pilcrow">¶</a></p>
@@ -1907,7 +1907,7 @@ an occurrence will last. This document allows the interval between occurrences t
    a "byday" data node is specified. This is also significant when in a "yearly" rule
    and a "byyearweek" is specified. Note that per <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-25#section-4.13" class="relref">Section 4.13</a> of [<a href="#I-D.ietf-netmod-rfc8407bis" class="cite xref">I-D.ietf-netmod-rfc8407bis</a>]</span>, neither a "default"
    nor a "mandatory" substatement is defined here because there are cases (e.g., profiling)
-   where the use of them is problematic.
+   where using these statements is problematic.
    YANG modules using this grouping <span class="bcp14">SHOULD</span> refine the "workweek-start" node with either a
    "mandatory" or a "default" statement, if it always needs to be configured or has a default value.
    This <span class="bcp14">MAY</span> be ignored in cases such as when this grouping is used by another grouping.<a href="#section-3.3.8-7" class="pilcrow">¶</a></p>
