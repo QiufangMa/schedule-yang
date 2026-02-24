@@ -13,7 +13,7 @@ Expires: 28 August 2026                                M. Boucadair, Ed.
 
 
                 A Common YANG Data Model for Scheduling
-                 draft-ietf-netmod-schedule-yang-latest
+            draft-ietf-netmod-schedule-yang-rfceditor-latest
 
 Abstract
 
@@ -875,7 +875,8 @@ Table of Contents
 
    This module imports types defined in [RFC6991] and [RFC7317].
 
-   <CODE BEGINS> file "ietf-schedule@2025-05-30.yang"
+   <CODE BEGINS>
+    file ietf-schedule@2025-05-30.yang
    module ietf-schedule {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-schedule";
@@ -2650,7 +2651,7 @@ B.2.  Example: Schedule Network Properties to Change Based on Date and
 
    <?xml version="1.0" encoding="utf-8"?>
    <link-attributes
-     xmlns="http://example.com/example-scheduled-link-bandwidth"
+     xmlns=http://example.com/example-scheduled-link-bandwidth
      xmlns:schedule="urn:ietf:params:xml:ns:yang:ietf-schedule">
      <link>
        <source-node>ne1</source-node>
@@ -2689,7 +2690,7 @@ Appendix C.  Examples of Using "ietf-schedule" Module for Scheduled Use
 
    module example-sch-capacity-res {
      yang-version 1.1;
-     namespace "http://example.com/example-sch-capacity-res";
+     namespace http://example.com/example-sch-capacity-res;
      prefix "ex-schecaparev";
 
      import ietf-network-topology {
@@ -2727,7 +2728,7 @@ Appendix C.  Examples of Using "ietf-schedule" Module for Scheduled Use
 
    <?xml version="1.0" encoding="utf-8"?>
    <link-capability-reservations
-     xmlns="http://example.com/example-sch-capacity-res"
+     xmlns=http://example.com/example-sch-capacity-res
      xmlns:schedule="urn:ietf:params:xml:ns:yang:ietf-schedule">
       <scheduled-link-capacity>
          <schedule-id>1</schedule-id>

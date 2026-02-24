@@ -22,7 +22,7 @@
 <meta content="scheduling" name="keyword">
 <meta content="YANG" name="keyword">
 <meta content="groupings" name="keyword">
-<meta content="draft-ietf-netmod-schedule-yang-latest" name="ietf.draft">
+<meta content="draft-ietf-netmod-schedule-yang-rfceditor-latest" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.31.0
     Python 3.12.12
@@ -37,7 +37,7 @@
     requests 2.32.5
     wcwidth 0.3.0
 -->
-<link href="draft-ietf-netmod-schedule-yang.xml" rel="alternate" type="application/rfc+xml">
+<link href="draft-ietf-netmod-schedule-yang-rfceditor.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
 <style type="text/css">@font-face {
   font-family: 'Lora';
@@ -1070,7 +1070,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dt class="label-workgroup">Workgroup:</dt>
 <dd class="workgroup">netmod</dd>
 <dt class="label-internet-draft">Internet-Draft:</dt>
-<dd class="internet-draft">draft-ietf-netmod-schedule-yang-latest</dd>
+<dd class="internet-draft">draft-ietf-netmod-schedule-yang-rfceditor-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
 <time datetime="2026-02-24" class="published">24 February 2026</time>
@@ -2177,8 +2177,7 @@ parameters.<a href="#section-5-2" class="pilcrow">¶</a></p>
       </h2>
 <p id="section-6-1">This module imports types defined in <span>[<a href="#RFC6991" class="cite xref">RFC6991</a>]</span> and <span>[<a href="#RFC7317" class="cite xref">RFC7317</a>]</span>.<a href="#section-6-1" class="pilcrow">¶</a></p>
 <div class="breakable sourcecode" id="section-6-2">
-<pre>&lt;CODE BEGINS&gt; file "ietf-schedule@2025-05-30.yang"
-
+<pre>&lt;CODE BEGINS&gt; file ietf-schedule@2025-05-30.yang
 module ietf-schedule {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-schedule";
@@ -4097,7 +4096,7 @@ module example-scheduled-link-bandwidth {
 <pre>
 &lt;?xml version="1.0" encoding="utf-8"?&gt;
 &lt;link-attributes
-  xmlns="http://example.com/example-scheduled-link-bandwidth"
+  xmlns=http://example.com/example-scheduled-link-bandwidth
   xmlns:schedule="urn:ietf:params:xml:ns:yang:ietf-schedule"&gt;
   &lt;link&gt;
     &lt;source-node&gt;ne1&lt;/source-node&gt;
@@ -4145,7 +4144,7 @@ module example-scheduled-link-bandwidth {
 <pre>
 module example-sch-capacity-res {
   yang-version 1.1;
-  namespace "http://example.com/example-sch-capacity-res";
+  namespace http://example.com/example-sch-capacity-res;
   prefix "ex-schecaparev";
 
   import ietf-network-topology {
@@ -4185,7 +4184,7 @@ module example-sch-capacity-res {
 <pre>
 &lt;?xml version="1.0" encoding="utf-8"?&gt;
 &lt;link-capability-reservations
-  xmlns="http://example.com/example-sch-capacity-res"
+  xmlns=http://example.com/example-sch-capacity-res
   xmlns:schedule="urn:ietf:params:xml:ns:yang:ietf-schedule"&gt;
    &lt;scheduled-link-capacity&gt;
       &lt;schedule-id&gt;1&lt;/schedule-id&gt;
